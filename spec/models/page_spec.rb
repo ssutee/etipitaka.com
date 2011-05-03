@@ -15,4 +15,18 @@ describe Page do
     page = Page.new
     page.should_not be_valid
   end
+
+  it "should have an items attribute" do
+    page = Page.create(@attr)
+    page.should respond_to(:items)
+  end
+
+  it "should have a 'total' class attribute" do
+    Page.should respond_to(:total)
+  end
+
+  it "should have a 'content' class attribute" do
+    Page.should respond_to(:content)
+  end
+  
 end

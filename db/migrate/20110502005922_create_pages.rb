@@ -11,7 +11,7 @@ class CreatePages < ActiveRecord::Migration
     add_index :pages, :language
     add_index :pages, :number
     add_index :pages, :volume
-    add_index :pages, [:language, :volume], :unique => true
+    add_index :pages, [:language, :volume]
     add_index :pages, [:language, :volume, :number], :unique => true
   end
 

@@ -22,4 +22,13 @@ class Page < ActiveRecord::Base
   validates :number,   :presence => true
   validates :content,  :presence => true, :allow_blank => false
   validates :volume,   :presence => true
+
+  def self.total(language, volume)
+    where("language = ? AND volume = ?",language, volume).count 
+  end
+
+  def self.content(language, volume, number)
+    pages = where("language = ? AND volume = ? AND number = ?",language, volume, number)
+    pages.empty? ? nil : pages.first.content
+  end
 end

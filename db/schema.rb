@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(:version => 20110502011238) do
   end
 
   add_index "pages", ["language", "volume", "number"], :name => "index_pages_on_language_and_volume_and_number", :unique => true
-  add_index "pages", ["language", "volume"], :name => "index_pages_on_language_and_volume", :unique => true
+  add_index "pages", ["language", "volume"], :name => "index_pages_on_language_and_volume"
   add_index "pages", ["language"], :name => "index_pages_on_language"
   add_index "pages", ["number"], :name => "index_pages_on_number"
   add_index "pages", ["volume"], :name => "index_pages_on_volume"
