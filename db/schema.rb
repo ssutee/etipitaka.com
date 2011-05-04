@@ -10,7 +10,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110502011238) do
+ActiveRecord::Schema.define(:version => 20110504025624) do
+
+  create_table "books", :force => true do |t|
+    t.string   "language"
+    t.integer  "category"
+    t.integer  "volume"
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "books", ["language", "volume"], :name => "index_books_on_language_and_volume", :unique => true
 
   create_table "items", :force => true do |t|
     t.boolean  "begin"
