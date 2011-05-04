@@ -31,4 +31,12 @@ class Page < ActiveRecord::Base
     pages = where("language = ? AND volume = ? AND number = ?",language, volume, number)
     pages.empty? ? nil : pages.first.content
   end
+
+  def self.search(language, volume, keywords)
+    cmd = 'language = :language AND volume = :volume'
+    keywords.split.each do |w|
+      cmd << " AND content LIKE '%#{w.gsub('+',' ')}%'" 
+    end
+    where(cmd, { :language => language, :volume => volume })
+  end
 end

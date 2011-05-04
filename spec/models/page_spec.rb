@@ -28,5 +28,9 @@ describe Page do
   it "should have a 'content' class attribute" do
     Page.should respond_to(:content)
   end
+
+  it "should have a 'search' class attribute" do
+    Page.should respond_to(:search)
+  end
   
 end
