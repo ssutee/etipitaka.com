@@ -84,6 +84,7 @@ class PagesController < ApplicationController
       p = Page.where(:language => language, :volume => volume, :number => number).first
       number = 0 if p.nil?
       @page_number_info = 'หน้าที่ ' + i_to_thai(number) unless number.to_i == 0
+      @page_number_info += '/'+i_to_thai(@max_number) unless @page_number_info.nil?
       @item_number_info = 'ข้อที่ ' + i_to_thai(p.items.first.number) unless number.to_i == 0
       if number.to_i != 0 and p.items.count > 1
         @item_number_info += '-' + i_to_thai(p.items.last.number)

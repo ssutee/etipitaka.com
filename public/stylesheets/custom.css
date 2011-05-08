@@ -15,10 +15,13 @@ div.pagination {
   margin-left: auto;
   margin-right: auto;
   text-align: center;
+  font-size: 150%;
 }
 
 table.results {
   width: 80%;
+  font-size: 150%;
+  margin-top: 1em;
   margin-left: auto;
   margin-right: auto;
   text-align: center;

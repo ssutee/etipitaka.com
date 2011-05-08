@@ -1,8 +1,19 @@
-<%= form_for(:search) do |f| %>
-  <div class="searchbar">
+<script type="text/javascript">
+  function read_book() {
+    var lang = document.getElementById('search_language');
+    window.open('/read?language='+lang.value+'&volume=1&number=0');
+    return true;
+  }
+</script>
+<div class="searchbar">
+  <%= form_for(:search) do |f| %>
+    <span class="field">
+      <input name="read" type="button" value="อ่านพระไตรปิฎก" id="read"
+             onclick="read_book();"/>
+    </span>
     <span class="field">
       <%= f.select :language, 
-                   [['ไทย','thai'],['บาลี','pali']],
+                   [['ไทย (บาลีสยามรัฐ)','thai'],['บาลี (บาลีสยามรัฐ)','pali']],
                    {:selected => @language} %>
     </span>
     <span class="field">
@@ -11,5 +22,5 @@
     <span class="actions">
       <%= f.submit "ค้นหา" %>
     </span>
-  </div>
-<% end %>
+  <% end %>
+</div>

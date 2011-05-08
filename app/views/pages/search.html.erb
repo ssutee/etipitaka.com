@@ -5,10 +5,12 @@
 <%= render 'search_bar' %>
 <div class="results">
   <% unless @pages.nil? or @pages.empty? %>
-    <%= will_paginate @pages %>
+    <%= will_paginate(@pages,:next_label => '→',
+                             :previous_label => '←')%>
     <table class="results" summary="Search results">
       <%= render @pages %>
     </table>
-    <%= will_paginate @pages %>
+    <%= will_paginate(@pages,:next_label => '→',
+                             :previous_label => '←')%>
   <% end %>
 </div>
