@@ -1,0 +1,9 @@
+<%= form_for(:read) do |f| %>
+  <span class="field">
+    <%= f.label :page_number, 'หน้า' %>
+    <%= f.text_field :page_number , { :size => 3 }%>
+  </span>
+  <span class="actions">
+    <%= f.submit '>' %>
+  </span>
+<% end %>

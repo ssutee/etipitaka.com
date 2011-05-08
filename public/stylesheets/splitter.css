@@ -4,7 +4,7 @@ html, body{
 }
 
 #splitterContainer {/* Main splitter element */
-  height:100%;
+  height:90%;
   width:100%;
   margin:0;
   padding:0;
@@ -19,11 +19,20 @@ html, body{
   overflow: auto;
 }
 
+#rightSplitterContainer{
+  height: 85%;
+}
+
 #rightPane{	/*Contains toolbar and horizontal splitter*/
   float: right;
   width: 80%;
   height: 100%;
   border-top: solid 1px #9cbdff;
+  border-bottom: solid 1px #9cbdff;
+}
+
+#rightPaneHeader{
+  height: 15%;
   border-bottom: solid 1px #9cbdff;
 }
 
@@ -36,7 +45,6 @@ html, body{
 #rightBottomPane{/*Bottom nested in horizontal splitter */
   width:0%;
   height:0%;
-  overflow:auto;
 }
 /* Splitbar styles; these are the default class names and required styles */
 .splitbarV {

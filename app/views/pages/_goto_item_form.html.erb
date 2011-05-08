@@ -1,0 +1,9 @@
+<%= form_for(:read) do |f| %>
+  <span class="field">
+    <%= f.label :item_number, 'ข้อ' %>
+    <%= f.text_field :item_number , { :size => 3 }%>
+  </span>
+  <span class="actions">
+    <%= f.submit '>' %>
+  </span>
+<% end %>

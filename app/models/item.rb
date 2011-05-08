@@ -20,10 +20,10 @@ class Item < ActiveRecord::Base
   validates :number, :presence => true
   validates :section, :presence => true
 
-  def self.max(language, volume, section)
+  def self.max(language, volume)
     page_ids = %(SELECT id FROM pages WHERE language = :language AND volume = :volume) 
-    items = where("page_id IN (#{page_ids}) AND section = :section AND begin = 't'", 
-      { :language => language, :volume => volume, :section => section })
+    items = where("page_id IN (#{page_ids}) AND begin = 't'", 
+      { :language => language, :volume => volume })
     items.map(&:number).max
   end
 
@@ -31,8 +31,16 @@ class Item < ActiveRecord::Base
     page_ids = %(SELECT id FROM pages WHERE language = :language AND volume = :volume) 
     items = where("page_id IN (#{page_ids}) AND section = :section"+
                   " AND begin = 't' AND number = :number", 
-      { :language => language, :volume => volume, 
-        :section => section, :number => number })
+                  { :language => language, :volume => volume, 
+                    :section => section, :number => number })
     items.empty? ? nil : Page.find(items.first.page_id).content
+  end
+
+  def self.find_by(language, volume, number)
+    page_ids = %(SELECT id FROM pages WHERE language = :language AND volume = :volume) 
+    items = where("page_id IN (#{page_ids}) "+
+                  " AND begin = 't' AND number = :number", 
+                  { :language => language, :volume => volume, 
+                    :number => number })
   end
 end

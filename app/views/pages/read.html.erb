@@ -6,7 +6,12 @@
   <%= stylesheet_link_tag 'splitter', :media => 'screen' %>
 <% end %>
 <div class="toolbar">
-  Toolbar
+  <div class="goto_page">
+    <%= render 'goto_page_form' %>
+  </div>
+  <div class="goto_item">
+    <%= render 'goto_item_form' %>
+  </div>
 </div>
 <div id="splitterContainer">
   <div id="leftPane">
@@ -15,8 +20,17 @@
     </ul>
   </div>
   <div id="rightPane">
-    <div style="height:15%;border-bottom:solid 1px #9cbdff;">
-      Toolbar?
+    <div id="rightPaneHeader">
+      <h2 class="book_title">
+        <%= @title1 %>
+      </h2>
+      <h2 class="book_title">
+        <%= @title2 %>
+      </h2>
+      <div class="position">
+        <span class="page_info"> <%= @page_number_info %> </span>
+        <span class="item_info"> <%= @item_number_info %> </span>
+      </div>
     </div>
     <div id="rightSplitterContainer" style="height:85%">
       <div id="rightTopPane">

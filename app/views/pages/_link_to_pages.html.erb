@@ -1,0 +1,6 @@
+<% @items.each do |item| %>
+  <%= link_to "หน้าที่ #{i_to_thai(item.page.number)}",
+              read_path(:language => @language,
+                        :volume => @volume,
+                        :number => item.page.number) %>
+<% end %>

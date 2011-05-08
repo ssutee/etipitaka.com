@@ -9,7 +9,8 @@ $(document).ready(
         closeableto:0
         });
     $("#rightSplitterContainer").splitter(
-      { splitHorizontal:true,
+      { maxBsize:1,
+        splitHorizontal:true,
         A:$('#rightTopPane'),
         B:$('#rightBottomPane'),
         closeableto:100 });
