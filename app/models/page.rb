@@ -23,7 +23,9 @@ class Page < ActiveRecord::Base
   validates :content,  :presence => true, :allow_blank => false
   validates :volume,   :presence => true
 
-  def self.total(language, volume)
+  default_scope :order => 'pages.volume ASC, pages.number ASC'
+
+  def self.max(language, volume)
     where("language = ? AND volume = ?",language, volume).count 
   end
 
@@ -38,5 +40,13 @@ class Page < ActiveRecord::Base
       cmd << " AND content LIKE '%#{w.gsub('+',' ')}%'" 
     end
     where(cmd, { :language => language, :volume => volume })
+  end
+
+  def self.search_all(language, keywords)
+    cmd = 'language = :language'
+    keywords.split.each do |w|
+      cmd << " AND content LIKE '%#{w.gsub('+',' ')}%'" 
+    end
+    where(cmd, { :language => language })
   end
 end

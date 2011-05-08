@@ -21,8 +21,8 @@ describe Page do
     page.should respond_to(:items)
   end
 
-  it "should have a 'total' class attribute" do
-    Page.should respond_to(:total)
+  it "should have a 'max' class attribute" do
+    Page.should respond_to(:max)
   end
 
   it "should have a 'content' class attribute" do
@@ -31,6 +31,10 @@ describe Page do
 
   it "should have a 'search' class attribute" do
     Page.should respond_to(:search)
+  end
+
+  it "should have a 'search_all' class attribute" do
+    Page.should respond_to(:search_all)
   end
   
 end

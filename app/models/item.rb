@@ -20,7 +20,7 @@ class Item < ActiveRecord::Base
   validates :number, :presence => true
   validates :section, :presence => true
 
-  def self.total(language, volume, section)
+  def self.max(language, volume, section)
     page_ids = %(SELECT id FROM pages WHERE language = :language AND volume = :volume) 
     items = where("page_id IN (#{page_ids}) AND section = :section AND begin = 't'", 
       { :language => language, :volume => volume, :section => section })

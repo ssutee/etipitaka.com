@@ -1,0 +1,45 @@
+div.searchbar {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3ex;
+  margin-bottom: 3ex;
+  text-align: center;
+}
+
+div.pagination {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+table.results {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+div.detail {
+  color: #aa9700;
+}
+
+span.highlight_excerpt {
+  color: #8c008c;
+  font-weight: bold;
+}
+
+pre.book_title {
+  margin-bottom: -1em;
+}
+
+pre.content {
+  font-size: 150%;
+}
+
+li.book {
+  font-size: 100%;
+  list-style-type: none;
+  display: inline-block;
+  margin-bottom: -1.3em;
+  margin-top: -1.3em;
+}

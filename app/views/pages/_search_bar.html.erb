@@ -1,0 +1,15 @@
+<%= form_for(:search) do |f| %>
+  <div class="searchbar">
+    <span class="field">
+      <%= f.select :language, 
+                   [['ไทย','thai'],['บาลี','pali']],
+                   {:selected => @language} %>
+    </span>
+    <span class="field">
+      <%= f.search_field :keywords %>
+    </span>
+    <span class="actions">
+      <%= f.submit "ค้นหา" %>
+    </span>
+  </div>
+<% end %>

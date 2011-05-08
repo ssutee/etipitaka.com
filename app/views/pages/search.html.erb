@@ -1,0 +1,14 @@
+<% content_for :head do %>
+  <%= render 'layouts/stylesheets' %>
+  <%= javascript_include_tag 'rails' %>
+<% end %>
+<%= render 'search_bar' %>
+<div class="results">
+  <% unless @pages.nil? or @pages.empty? %>
+    <%= will_paginate @pages %>
+    <table class="results" summary="Search results">
+      <%= render @pages %>
+    </table>
+    <%= will_paginate @pages %>
+  <% end %>
+</div>

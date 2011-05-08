@@ -24,8 +24,8 @@ describe Item do
     item.page.should == @page
   end
 
-  it "should have a 'total' class attribute" do
-    Item.should respond_to(:total)
+  it "should have a 'max' class attribute" do
+    Item.should respond_to(:max)
   end
 
   it "should have a 'content' class attribute" do

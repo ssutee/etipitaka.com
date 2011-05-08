@@ -14,4 +14,5 @@
 
 class Book < ActiveRecord::Base
   attr_accessible :language, :category, :title, :volume
+  default_scope :order => 'books.volume ASC'
 end

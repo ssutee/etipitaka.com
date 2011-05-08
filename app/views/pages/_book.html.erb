@@ -1,0 +1,7 @@
+<% if !@books.nil? %>
+  <% @books.each do |book| %>
+    <li class="book">
+      <pre class="book_title"><%= book.title.strip %></pre>
+    </li>
+  <% end %>
+<% end %>

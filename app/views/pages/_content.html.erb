@@ -1,0 +1,6 @@
+<pre class="content">
+  <% if !@content.nil? and !@keywords.nil? %>
+    <%= highlight(@content.gsub("\t",'&nbsp;'*3).gsub("\n",'<br/>'), 
+                  @keywords.split.each { |keyword| keyword.gsub('+',' ') }) %>
+  <% end %>
+</pre>

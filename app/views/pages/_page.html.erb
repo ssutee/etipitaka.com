@@ -1,0 +1,19 @@
+<tr>
+  <td class="result">
+    <div class="title_link">
+      <%= link_to title_link(@pages.index(page)+1+((@current_page.to_i-1)*@per_page.to_i), 
+           page.volume, 
+           page.number), read_path(:volume => page.volume, 
+                                   :number => page.number,
+                                   :language => page.language,
+                                   :keywords => @keywords), :target => '_blank'
+      %>
+    </div>
+    <div class="excerpt">
+      <%= search_excerpt(page.content, @keywords) %>
+    </div>
+    <div class="detail">
+      <%= page_detail(page) %>
+    </div>
+  </td>
+</tr>

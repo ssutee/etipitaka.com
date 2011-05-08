@@ -1,0 +1,30 @@
+<% content_for :head do %>
+  <%= render 'layouts/stylesheets' %>
+  <%= javascript_include_tag 'jquery-1.4.3.min' %>
+  <%= javascript_include_tag 'splitter' %>
+  <%= javascript_include_tag 'splitter_config' %>
+  <%= stylesheet_link_tag 'splitter', :media => 'screen' %>
+<% end %>
+<div class="toolbar">
+  Toolbar
+</div>
+<div id="splitterContainer">
+  <div id="leftPane">
+    <ul class="books">
+      <%= render 'book' %>
+    </ul>
+  </div>
+  <div id="rightPane">
+    <div style="height:15%;border-bottom:solid 1px #9cbdff;">
+      Toolbar?
+    </div>
+    <div id="rightSplitterContainer" style="height:85%">
+      <div id="rightTopPane">
+        <%= render 'content' %>
+      </div>
+      <div id="rightBottomPane">
+      </div>
+    </div>
+  </div>
+</div>
+
