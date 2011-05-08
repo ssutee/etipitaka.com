@@ -6,11 +6,33 @@
   <%= stylesheet_link_tag 'splitter', :media => 'screen' %>
 <% end %>
 <div class="toolbar">
+  <div class="label_for_goto">เลือกอ่านที่</div>
   <div class="goto_page">
     <%= render 'goto_page_form' %>
   </div>
   <div class="goto_item">
     <%= render 'goto_item_form' %>
+  </div>
+  <div class="label_for_read_page">อ่านทีละหน้า</div>
+  <div class="back_button">
+    <%= link_to image_tag('left.png', 
+                          :alt => '<<', 
+                          :size => "32x32"), 
+                :action => 'read', 
+                :volume => @volume,
+                :number => @number.to_i-1,
+                :keywords => @keywords,
+                :language => @language %>
+  </div>
+  <div class="next_button">
+    <%= link_to image_tag('right.png', 
+                          :alt => '>>',
+                          :size => "32x32"), 
+                :action => 'read', 
+                :volume => @volume,
+                :number => @number.to_i+1,
+                :keywords => @keywords,
+                :language => @language %>
   </div>
 </div>
 <div id="splitterContainer">

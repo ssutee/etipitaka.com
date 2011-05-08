@@ -32,7 +32,7 @@ html, body{
 }
 
 #rightPaneHeader{
-  height: 15%;
+  height: 6em;
   border-bottom: solid 1px #9cbdff;
 }
 

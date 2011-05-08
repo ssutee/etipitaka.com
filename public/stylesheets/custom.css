@@ -60,25 +60,64 @@ div.toolbar {
   position: relative;
 }
 
-div.goto_page {
-  text-align: center;
+div.label_for_goto {
   position: absolute;
-  width: 10%;
-  top: 50%;
+  width: 10em;
+  top: 25%;
+  left: 5px;
+  height: 2em;
+  margin-top: -1em;
+}
+
+div.label_for_read_page {
+  position: absolute;
+  width: 10em;
+  top: 25%;
+  left: 20em;
+  height: 2em;
+  margin-top: -1em;
+}
+
+div.goto_page {
+  text-align: left;
+  position: absolute;
+  width: 10em;
+  top: 55%;
+  left: 10px;
   height: 2em;
   margin-top: -1em;
   /* background: #ccc; */
 }
 
 div.goto_item {
-  text-align: center; 
+  text-align: left; 
   position: absolute;
-  width: 10%;
-  top: 50%;
-  left: 10%;
+  width: 10em;
+  top: 55%;
+  left: 10em;
   height: 2em;
   margin-top: -1em;
   /* background: #ccc; */
+}
+
+div.back_button {
+  text-align: left; 
+  position: absolute;
+  width: 3em;
+  top: 60%;
+  left: 20em;
+  height: 2em;
+  margin-top: -1em;
+}
+
+div.next_button {
+  text-align: left; 
+  position: absolute;
+  width: 3em;
+  top: 60%;
+  left: 23em;
+  height: 2em;
+  margin-top: -1em;
 }
 
 h2.book_title {
