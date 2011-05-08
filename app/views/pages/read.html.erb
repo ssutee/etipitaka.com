@@ -22,17 +22,17 @@
                 :volume => @volume,
                 :number => @number.to_i-1,
                 :keywords => @keywords,
-                :language => @language %>
+                :language => @language if @number.to_i > 1 %>
   </div>
   <div class="next_button">
     <%= link_to image_tag('right.png', 
                           :alt => '>>',
                           :size => "32x32"), 
-                :action => 'read', 
-                :volume => @volume,
-                :number => @number.to_i+1,
-                :keywords => @keywords,
-                :language => @language %>
+            :action => 'read', 
+            :volume => @volume,
+            :number => @number.to_i+1,
+            :keywords => @keywords,
+            :language => @language if !@max_number.nil? and @number.to_i < @max_number %>
   </div>
 </div>
 <div id="splitterContainer">

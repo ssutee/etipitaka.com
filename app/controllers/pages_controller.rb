@@ -54,6 +54,7 @@ class PagesController < ApplicationController
 
     @language = language
     @volume = volume
+    @max_number = Page.max(language,volume) if !language.nil? and !volume.nil? 
 
     @books = Book.where(:language => language) unless language.nil? 
     @content = Page.content(language, volume, number) unless number.nil?
