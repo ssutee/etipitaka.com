@@ -34,6 +34,14 @@
             :keywords => @keywords,
             :language => @language if !@max_number.nil? and @number.to_i < @max_number %>
   </div>
+  <% if @number.to_i != 0 %>
+  <div class="label_for_compare">เทียบเคียงกับ</div>
+  <div class="compare_form">
+    <%= render :partial => 'compare_form', :locals => { :lang1 => @language,
+                                            :volume => @volume,
+                                            :p1 => @number } %>
+  </div>
+  <% end %>
 </div>
 <div id="splitterContainer">
   <div id="leftPane">

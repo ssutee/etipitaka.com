@@ -98,6 +98,12 @@ class PagesController < ApplicationController
     @title = "Compare"
     @volume = params[:volume]
     @languages = [ params[:lang1], params[:lang2] ]
+    
+    params[:p2] ||= find_matched_page(params[:lang1],
+                                      params[:lang2],
+                                      params[:volume],
+                                      params[:p1])
+
     @pages = [ params[:p1], params[:p2] ]
     @titles1, @titles2, @contents, @max_numbers = [], [], [], []
     @page_number_info, @item_number_info = [], []
@@ -130,4 +136,23 @@ class PagesController < ApplicationController
 
   def test
   end
+
+  private
+
+    def find_matched_page(lang1, lang2, volume, page)
+      item = Page.where(:language => lang1, 
+                     :volume => volume, 
+                     :number => page).first.items.first
+
+      page_ids = %(SELECT id FROM pages WHERE language = :lang2 AND volume = :volume) 
+
+      tmp = Item.where("page_id IN (#{page_ids}) AND"+ 
+                       " begin = 't' AND section = :section AND"+
+                       " number = :number", 
+                       { :lang2 => lang2, 
+                         :volume => volume, 
+                         :section => item.section, 
+                         :number => item.number }).first
+      tmp.nil? ? 1 : tmp.page.number
+    end
 end

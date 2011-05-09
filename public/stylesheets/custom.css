@@ -93,7 +93,6 @@ div.goto_page {
   left: 10px;
   height: 2em;
   margin-top: -1em;
-  /* background: #ccc; */
 }
 
 div.goto_item {
@@ -104,7 +103,6 @@ div.goto_item {
   left: 10em;
   height: 2em;
   margin-top: -1em;
-  /* background: #ccc; */
 }
 
 div.back_button {
@@ -123,6 +121,25 @@ div.next_button {
   width: 3em;
   top: 60%;
   left: 23em;
+  height: 2em;
+  margin-top: -1em;
+}
+
+div.label_for_compare {
+  position: absolute;
+  width: 10em;
+  top: 25%;
+  left: 28em;
+  height: 2em;
+  margin-top: -1em;
+}
+
+div.compare_form {
+  text-align: left; 
+  position: absolute;
+  width: 15em;
+  top: 51%;
+  left: 28em;
   height: 2em;
   margin-top: -1em;
 }
@@ -162,11 +179,13 @@ a.book_title:hover {
 div.left_title {
   width: 100%;
   text-align: center;
+  margin-bottom: 0.5em;
 }
 
 div.right_title {
   width: 100%;
   text-align: center;
+  margin-bottom: 0.5em;
 }
 
 div.turn_page_bar {
