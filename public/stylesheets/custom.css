@@ -40,8 +40,12 @@ pre.book_title {
 }
 
 pre.content {
-  font-size: 150%;
+  font-size: 145%;
   padding-left: 1em;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  padding-top: 0;
+  margin-top: 0;
 }
 
 ul.books {
@@ -153,4 +157,31 @@ a.book_title {
 
 a.book_title:hover {
   color: blue;
+}
+
+div.left_title {
+  width: 100%;
+  text-align: center;
+}
+
+div.right_title {
+  width: 100%;
+  text-align: center;
+}
+
+div.turn_page_bar {
+  text-align: center;
+  padding-top: 0.5em;
+}
+
+span.turn_left {
+  text-align: left;
+}
+
+span.turn_right {
+  text-align: right;
+}
+
+div.position {
+  height: 1.5em;
 }

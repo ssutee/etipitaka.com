@@ -1,0 +1,27 @@
+<% p1 = target == 0 ? pages[0].to_i - 1 : pages[0] %>
+<% p2 = target == 1 ? pages[1].to_i - 1 : pages[1] %>
+<span class="turn_left">
+<%= link_to(image_tag('left.png', 
+                      :alt => '>>',
+                      :size => "40x40"), 
+        :action => 'compare', 
+        :volume => @volume,
+        :lang1 => @languages[0],
+        :lang2 => @languages[1],
+        :p1 => p1,
+        :p2 => p2)%>
+</span>
+<%= raw '&nbsp;'*7 %>
+<% p1 = target == 0 ? pages[0].to_i + 1 : pages[0] %>
+<% p2 = target == 1 ? pages[1].to_i + 1 : pages[1] %>
+<span class="turn_right">
+<%= link_to(image_tag('right.png', 
+                      :alt => '>>',
+                      :size => "40x40"), 
+        :action => 'compare', 
+        :volume => @volume,
+        :lang1 => @languages[0],
+        :lang2 => @languages[1],
+        :p1 => p1,
+        :p2 => p2)%>
+</span>

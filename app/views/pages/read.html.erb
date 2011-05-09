@@ -2,8 +2,8 @@
   <%= render 'layouts/stylesheets' %>
   <%= javascript_include_tag 'jquery-1.4.3.min' %>
   <%= javascript_include_tag 'splitter' %>
-  <%= javascript_include_tag 'splitter_config' %>
-  <%= stylesheet_link_tag 'splitter', :media => 'screen' %>
+  <%= javascript_include_tag 'splitter_config_for_read' %>
+  <%= stylesheet_link_tag 'splitter_for_read', :media => 'screen' %>
 <% end %>
 <div class="toolbar">
   <div class="label_for_goto">เลือกอ่านที่</div>
@@ -56,7 +56,7 @@
     </div>
     <div id="rightSplitterContainer" style="height:85%">
       <div id="rightTopPane">
-        <%= render 'content' %>
+        <%= render :partial => 'content', :locals => { :content => @content } %>
       </div>
       <div id="rightBottomPane">
       </div>

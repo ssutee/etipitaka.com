@@ -78,6 +78,8 @@ class PagesController < ApplicationController
       @volume = volume
       if language == 'thai'
         tmp = 'ฉบับบาลีสยามรัฐ (ภาษาไทย)'
+      elsif language == 'pali'
+        tmp = 'ฉบับบาลีสยามรัฐ (ภาษาบาลี)'
       end
       @title1 = "พระไตรปิฎก #{tmp} เล่มที่ #{i_to_thai(volume)}"
       @title2 = Book.where(:language => language, :volume => volume).first.title
@@ -90,5 +92,42 @@ class PagesController < ApplicationController
         @item_number_info += '-' + i_to_thai(p.items.last.number)
       end
     end
+  end
+
+  def compare
+    @title = "Compare"
+    @volume = params[:volume]
+    @languages = [ params[:lang1], params[:lang2] ]
+    @pages = [ params[:p1], params[:p2] ]
+    @titles1, @titles2, @contents, @max_numbers = [], [], [], []
+    @page_number_info, @item_number_info = [], []
+
+    i = 0
+    for lang in @languages
+      if lang == 'thai'
+        tmp = 'ฉบับบาลีสยามรัฐ (ภาษาไทย)'
+      elsif lang == 'pali'
+        tmp = 'ฉบับบาลีสยามรัฐ (ภาษาบาลี)'
+      end
+      @titles1 << "พระไตรปิฎก #{tmp} เล่มที่ #{i_to_thai(@volume)}"
+      @titles2 << Book.where(:language => lang, :volume => @volume).first.title
+      @contents << Page.content(lang, @volume, @pages[i]) 
+      @max_numbers << Page.max(lang, @volume)  
+      p = Page.where(:language => lang, :volume => @volume, :number => @pages[i]).first
+
+      tmp = 'หน้าที่ ' + i_to_thai(@pages[i]) 
+      tmp += '/'+i_to_thai(@max_numbers[i]) 
+      @page_number_info << tmp
+      
+      tmp = 'ข้อที่ ' + i_to_thai(p.items.first.number) 
+      if p.items.count > 1
+        tmp += '-' + i_to_thai(p.items.last.number)
+      end
+      @item_number_info << tmp
+      i += 1
+    end
+  end
+
+  def test
   end
 end

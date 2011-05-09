@@ -1,0 +1,34 @@
+<% content_for :head do %>
+  <%= javascript_include_tag 'jquery-1.3' %>
+  <%= javascript_include_tag 'splitter-152.js' %>
+  <%= stylesheet_link_tag 'test', :media => 'all' %>
+  <%= javascript_include_tag 'test.js' %>
+<% end %>
+
+<div id="header">
+<h1>3-Pane Splitter Layout</h1>
+<p>Here is a typical 3-pane layout with the splitter occupying all the area below this header.
+  The page scroll bars have been removed since all the content is inside the splitter, and the
+  splitter is anchored to the bottom of the window using an onresize event handler.</p>
+<p>
+<a href="index.html">See the splitter documentation</a>
+</p>
+</div>
+<div id="MySplitter">
+  <div id="LeftPane">
+	<div id="TopLeftPane">
+      Left Top
+	</div>
+	<div id="BottomLeftPane">
+      Left Bottom
+	</div> 
+  </div> 
+  <div id="RightPane">
+	<div id="TopLeftPane">
+      Left Top
+	</div>
+	<div id="BottomLeftPane">
+      Left Bottom
+	</div> 
+  </div> 
+</div> 
