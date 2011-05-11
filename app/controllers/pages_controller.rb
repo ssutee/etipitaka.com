@@ -1,29 +1,43 @@
 # encoding: utf-8
+#
+
 
 class PagesController < ApplicationController
+
   def search
     @title = 'Search'
     if !params[:search].nil? and params[:search].has_key?(:keywords)
-      keywords = params[:search][:keywords]
-      language = params[:search][:language]
+      @keywords = params[:search][:keywords]
+      @language = params[:search][:language]
     end
 
-    if !keywords.blank? and params[:page].nil?
-      session[:keywords] = keywords
+    if !@keywords.blank? and params[:page].nil?
+      session[:keywords] = @keywords
       session[:language] = params[:search][:language]
-      pages = Page.search_all(language, keywords) 
+      pages = Page.search_all(@language, @keywords) 
+      @count = pages.count
       @pages = pages.paginate(:page => params[:page], :per_page => 10)
       @current_page = 1
       @per_page = 10
-      @keywords = keywords
-      @language = language
-    elsif keywords.nil? and !params[:page].nil? and !session[:keywords].nil?
+    elsif @keywords.nil? and !params[:page].nil? and !session[:keywords].nil?
       pages = Page.search_all(session[:language], session[:keywords]) 
+      @count = pages.count
       @pages = pages.paginate(:page => params[:page], :per_page => 10)
       @current_page = params[:page]
       @per_page = 10
       @keywords = session[:keywords]
       @language = session[:language]
+    end
+
+    if !@keywords.nil? and @keywords.blank?
+      flash.now[:notice] = 'กรุณาป้อนคำค้นหา'
+    elsif !@keywords.blank? and (@pages.nil? or @pages.empty?)
+      if @language == 'thai'
+        tmp = 'ไทย (บาลีสยามรัฐ)'
+      elsif @language == 'pali'
+        tmp = 'บาลี (บาลีสยามรัฐ)'
+      end
+      flash.now[:notice] = "ไม่พบคำว่า \"#{@keywords}\" ในพระไตรปิฎก ภาษา#{tmp}"
     end
   end
 

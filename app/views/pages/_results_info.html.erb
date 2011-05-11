@@ -1,0 +1,4 @@
+<%= raw "ผลการค้นหาที่ #{i_to_thai 1+(@current_page.to_i-1)*@per_page.to_i} - " +
+    "#{i_to_thai @pages.count+(@current_page.to_i-1)*@per_page.to_i} " +
+    "จากทั้งหมด #{i_to_thai @count} ผลลัพธ์" +
+    " สำหรับคำว่า \"#{@keywords}\"" %>

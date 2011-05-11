@@ -41,11 +41,15 @@ pre.book_title {
 
 pre.content {
   font-size: 145%;
-  padding-left: 1em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
   padding-bottom: 0;
   margin-bottom: 0;
   padding-top: 0;
   margin-top: 0;
+  white-space: pre-wrap; /* css-3 */
+  white-space: -moz-pre-wrap !important; /* Mozilla, since 1999 */
+  word-wrap: break-word; /* Internet Explorer 5.5+ */
 }
 
 ul.books {
@@ -203,4 +207,20 @@ span.turn_right {
 
 div.position {
   height: 1.5em;
+}
+
+div.flash {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+  min-width: 30em;
+  font-size: 120%;
+}
+
+div.results_info {
+  text-align: center;
+  color: #a52a2a;
+  font-size: 130%;
+  margin-bottom: 1em;
 }
