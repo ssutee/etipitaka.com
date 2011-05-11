@@ -27,6 +27,11 @@ table.results {
   text-align: center;
 }
 
+td.result {
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
 div.detail {
   color: #aa9700;
 }
@@ -178,6 +183,14 @@ a.book_title {
 
 a.book_title:hover {
   color: blue;
+}
+
+a.title_link {
+  color: blue;
+}
+
+a.title_link:visited {
+  color: #0000bb;
 }
 
 div.left_title {
