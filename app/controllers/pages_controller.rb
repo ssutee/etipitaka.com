@@ -148,9 +148,6 @@ class PagesController < ApplicationController
     end
   end
 
-  def test
-  end
-
   private
 
     def find_matched_page(lang1, lang2, volume, page)
