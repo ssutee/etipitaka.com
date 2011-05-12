@@ -30,6 +30,11 @@ table.results {
 td.result {
   padding-top: 1em;
   padding-bottom: 1em;
+  background: white !important;
+}
+
+tr.result {
+  background: white !important;
 }
 
 div.detail {
