@@ -3,6 +3,20 @@
   padding: 0;
 }
 
+.container {
+  width: 1000px;
+}
+
+body {
+  background: #ffffff;
+}
+
+section {
+  background: white;
+  padding: 20px;
+  border: solid 1px black;
+}
+
 div.searchbar {
   margin-left: auto;
   margin-right: auto;
@@ -19,7 +33,7 @@ div.pagination {
 }
 
 table.results {
-  width: 80%;
+  width: 800px;
   font-size: 150%;
   margin-top: 1em;
   margin-left: auto;
@@ -239,6 +253,34 @@ div.flash {
 div.results_info {
   text-align: center;
   color: #a52a2a;
-  font-size: 130%;
+  font-size: 150%;
+  padding-bottom: 1em;
   margin-bottom: 1em;
+  border-bottom: solid 1px black;
+  width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.round {
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px; 
+  border-radius: 10px;
+}
+
+table.results_info {
+  margin-left: auto;
+  margin-right: auto;
+  width: 400px;
+  margin-bottom: 0.5em;
+}
+
+table.results_info tr td{
+  background: white !important;
+  text-align: center;
+}
+
+table.results_info tr th{
+  background: white !important;
+  text-align: center;
 }

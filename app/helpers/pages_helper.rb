@@ -29,4 +29,5 @@ module PagesHelper
     tmp += " ข้อที่ #{i_to_thai(page.items.first.number)}"
     page.items.count > 1 ? tmp + "-#{i_to_thai(page.items.last.number)}" : tmp
   end
+
 end

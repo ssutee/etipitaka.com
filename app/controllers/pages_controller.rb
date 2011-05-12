@@ -15,12 +15,14 @@ class PagesController < ApplicationController
       session[:keywords] = @keywords
       session[:language] = params[:search][:language]
       pages = Page.search_all(@language, @keywords) 
+      @category = count_category(pages) 
       @count = pages.count
       @pages = pages.paginate(:page => params[:page], :per_page => 10)
       @current_page = 1
       @per_page = 10
     elsif @keywords.nil? and !params[:page].nil? and !session[:keywords].nil?
       pages = Page.search_all(session[:language], session[:keywords]) 
+      @category = count_category(pages) 
       @count = pages.count
       @pages = pages.paginate(:page => params[:page], :per_page => 10)
       @current_page = params[:page]
@@ -165,5 +167,19 @@ class PagesController < ApplicationController
                          :section => item.section, 
                          :number => item.number }).first
       tmp.nil? ? 1 : tmp.page.number
+    end
+
+    def count_category(pages)
+      count = {}
+      pages.each do |page|
+        if page.volume.to_i <= 8
+          count[:v] = count[:v].to_i + 1
+        elsif page.volume.to_i <= 33
+          count[:s] = count[:s].to_i + 1
+        else
+          count[:a] = count[:a].to_i + 1
+        end
+      end
+      count
     end
 end

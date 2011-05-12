@@ -1,4 +1,17 @@
+<table class="results_info">
+  <tr>
+    <th style="color:#1e90ff;">พระวินัยฯ</th>
+    <th style="color:#ff4500;">พระสุตตันตฯ</th>
+    <th style="color:#a020f0;">พระอภิธรรมฯ</th>
+  </tr>
+  <tr>
+    <td><%= i_to_thai @category[:v].to_i %> หน้า</td>
+    <td><%= i_to_thai @category[:s].to_i %> หน้า</td>
+    <td><%= i_to_thai @category[:a].to_i %> หน้า</td>
+  </tr>
+</table>
+
 <%= raw "ผลการค้นหาที่ #{i_to_thai 1+(@current_page.to_i-1)*@per_page.to_i} - " +
     "#{i_to_thai @pages.count+(@current_page.to_i-1)*@per_page.to_i} " +
-    "จากทั้งหมด #{i_to_thai @count} ผลลัพธ์" +
+    "จากทั้งหมด #{i_to_thai @count} หน้า" +
     " สำหรับคำว่า \"#{@keywords}\"" %>
