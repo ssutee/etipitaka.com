@@ -30,4 +30,12 @@ module PagesHelper
     page.items.count > 1 ? tmp + "-#{i_to_thai(page.items.last.number)}" : tmp
   end
 
+  def readable_language(language)
+    if language == 'thai'
+      'พระไตรปิฎก ฉบับบาลีสยามรัฐ (ภาษาไทย)' 
+    elsif language == 'pali'
+      'พระไตรปิฎก ฉบับบาลีสยามรัฐ (ภาษาบาลี)' 
+    end
+  end
+
 end

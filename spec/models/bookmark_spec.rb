@@ -4,7 +4,12 @@ describe Bookmark do
   before (:each) do
     @user = Factory(:user)
     @page = Factory(:page)
-    @attr = { :note => 'test', :page_id => @page.id }
+    @page.items.create!(:number => 1,
+                        :begin => true,
+                        :section => 1)
+    @attr = { :note => 'test', 
+              :page_id => @page.id,
+              :item_number => @page.items.first.number.to_i }
   end
 
   it "should create a new intance given valid attributes" do

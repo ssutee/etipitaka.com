@@ -92,6 +92,7 @@ li.book {
   margin-top: -1.1em;
 }
 
+
 div.toolbar {
   height: 75px;
   position: relative;
@@ -308,4 +309,31 @@ legend {
 div.bookmark {
   margin-top: 5px;
   text-align: center;
+}
+
+div.bookmark a {
+  text-decoration: none;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+ul.bookmark_options {
+  list-style-type: none;
+  margin: auto;
+  padding-left: 0;
+  margin-left: 0;
+  display: inline;
+}
+
+ul.bookmark_options li {
+  display: inline;
+  padding-right: 7px;
+}
+
+ul.bookmark_options li a {
+  text-decoration: none;
+}
+
+ul.bookmark_options li a:hover {
+  text-decoration: underline;
 }

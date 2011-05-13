@@ -108,6 +108,10 @@ class PagesController < ApplicationController
         @item_number_info += '-' + i_to_thai(p.items.last.number)
       end
     end
+
+    if signed_in?
+      @bookmark = Bookmark.new
+    end
   end
 
   def compare

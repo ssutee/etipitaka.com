@@ -1,0 +1,48 @@
+<% content_for :head do %>
+  <%= render 'layouts/stylesheets' %>
+  <%= javascript_include_tag 'jquery-1.5.1.min' %>
+  <%= javascript_include_tag 'jquery-ui-1.8.12.custom.min.js' %>
+  <%= stylesheet_link_tag 'Aristo/jquery-ui-1.8.7.custom.css', :media => 'screen' %>
+  <%= javascript_include_tag 'jquery_ujs' %>
+
+<% end %>
+<script>
+  $(function() {
+    $("#accordion").accordion({ header: "h3" });
+  });
+</script>
+<div class="container">
+  <section class="round">
+    <h2>รายการจดจำ</h2>
+    <% if signed_in? %>
+      <div id="accordion">
+        <% current_user.bookmarks.each do |bookmark| %>
+          <div>
+            <h3>
+              <a href="#"><%= bookmark_header bookmark.page.id, bookmark.item_number %></a>
+            </h3>
+            <div>
+              <p><%= bookmark.note %></p>
+              <ul class="bookmark_options">
+                <li>
+                  <%= link_to 'อ่าน', 
+                              read_path(:language => bookmark.page.language, 
+                                        :volume => bookmark.page.volume,
+                                        :number => bookmark.page.number)
+                  %>
+                </li>
+                <li>|</li>
+                <li>
+                  <%= link_to 'ลบ', bookmark, :method => :delete,
+                              :confirm => 'คุณแน่ใจที่จะลบรายการจดจำนี้หรือไม่?' %>
+                </li>
+              </ul>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+    <br/>
+    <%= link_to "Back", :back %>
+  </section>
+</div>

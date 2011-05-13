@@ -1,4 +1,6 @@
 Etipitaka::Application.routes.draw do
+  resources :bookmarks
+
   devise_for :users
 
   match '/search', :to => 'pages#search'

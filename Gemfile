@@ -34,6 +34,7 @@ group :development do
   gem 'annotate-models'
   gem 'faker'
   gem 'nifty-generators'
+  gem 'jquery-rails', '>= 0.2.6'
 end
 
 group :test do

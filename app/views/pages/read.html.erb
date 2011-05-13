@@ -1,9 +1,11 @@
 <% content_for :head do %>
   <%= render 'layouts/stylesheets' %>
-  <%= javascript_include_tag 'jquery-1.4.3.min' %>
+  <%= javascript_include_tag 'jquery-1.5.1.min' %>
   <%= javascript_include_tag 'splitter' %>
   <%= javascript_include_tag 'splitter_config_for_read' %>
+  <%= javascript_include_tag 'jquery-ui-1.8.12.custom.min.js' %>
   <%= stylesheet_link_tag 'splitter_for_read', :media => 'screen' %>
+  <%= stylesheet_link_tag 'Aristo/jquery-ui-1.8.7.custom.css', :media => 'screen' %>
 <% end %>
 <div class="toolbar">
   <%= render :partial => 'toolbar' %>
