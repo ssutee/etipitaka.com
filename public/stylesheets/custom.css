@@ -61,6 +61,8 @@ span.highlight_excerpt {
 }
 
 pre.book_title {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 pre.content {
@@ -91,85 +93,52 @@ li.book {
 }
 
 div.toolbar {
-  height: 10%;
+  height: 75px;
   position: relative;
 }
 
 div.label_for_goto {
-  position: absolute;
   width: 10em;
-  top: 25%;
   left: 5px;
   height: 2em;
-  margin-top: -1em;
 }
 
 div.label_for_read_page {
-  position: absolute;
   width: 10em;
-  top: 25%;
   left: 20em;
   height: 2em;
-  margin-top: -1em;
 }
 
 div.goto_page {
   text-align: left;
-  position: absolute;
   width: 10em;
-  top: 55%;
-  left: 10px;
   height: 2em;
-  margin-top: -1em;
 }
 
 div.goto_item {
   text-align: left; 
-  position: absolute;
   width: 10em;
-  top: 55%;
-  left: 10em;
   height: 2em;
-  margin-top: -1em;
 }
 
 div.back_button {
-  text-align: left; 
-  position: absolute;
+  text-align: right; 
+  margin-top: 2px;
+  float: left;
   width: 3em;
-  top: 60%;
-  left: 20em;
   height: 2em;
-  margin-top: -1em;
 }
 
 div.next_button {
   text-align: left; 
-  position: absolute;
+  margin-top: 2px;
+  float: right;
   width: 3em;
-  top: 60%;
-  left: 23em;
   height: 2em;
-  margin-top: -1em;
-}
-
-div.label_for_compare {
-  position: absolute;
-  width: 10em;
-  top: 25%;
-  left: 28em;
-  height: 2em;
-  margin-top: -1em;
 }
 
 div.compare_form {
-  text-align: left; 
-  position: absolute;
-  width: 15em;
-  top: 51%;
-  left: 28em;
-  height: 2em;
-  margin-top: -1em;
+  text-align: center;
 }
 
 h2.book_title {
@@ -315,4 +284,28 @@ div.header {
   width: 95%;
   display: block;
   margin: 0 auto;
+}
+
+fieldset.tool {
+  margin: auto 0;
+  padding: 0;
+  height: 65px;
+}
+
+table.toolbar {
+  margin: 0;
+  padding: 0;
+  height: 65px;
+}
+
+legend {
+  margin-left: 10px;
+  margin-right: 10px;
+  padding-left: 3px;
+  padding-right: 3px;
+}
+
+div.bookmark {
+  margin-top: 5px;
+  text-align: center;
 }

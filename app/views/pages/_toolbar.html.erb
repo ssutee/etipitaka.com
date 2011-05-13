@@ -1,0 +1,66 @@
+<table class="toolbar">
+  <tr>
+    <td style="width: 260px;">
+      <fieldset class="tool">
+        <legend>เลือกอ่านที่</legend> 
+          <div style="float:left;padding-left:3px;">
+            <%= render 'goto_page_form' %>
+          </div>
+          <div style="float:right;padding-right:3px;">
+            <%= render 'goto_item_form' %>
+          </div>
+      </fieldset>
+    </td>
+    <td style="width: 100px;">
+      <fieldset class="tool">
+        <legend>อ่านทีละหน้า</legend> 
+        <div class="back_button">
+          <%= link_to image_tag('left.png', 
+                                :alt => '<<', 
+                                :size => "32x32"), 
+                      :action => 'read', 
+                      :volume => @volume,
+                      :number => @number.to_i-1,
+                      :keywords => @keywords,
+                      :language => @language if @number.to_i > 1 %>
+        </div>
+        <div class="next_button">
+          <%= link_to image_tag('right.png', 
+                                :alt => '>>',
+                                :size => "32x32"), 
+              :action => 'read', 
+              :volume => @volume,
+              :number => @number.to_i+1,
+              :keywords => @keywords,
+              :language => @language if !@max_number.nil? and @number.to_i < @max_number %>
+        </div>
+      </fieldset>
+    </td>
+    <% if @number.to_i != 0 %>
+    <td style="width:200px;">
+      <fieldset class="tool">
+        <legend>เทียบเคียงกับ</legend> 
+        <div class="compare_form">
+          <%= render :partial => 'compare_form', :locals => { :lang1 => @language,
+                                                  :volume => @volume,
+                                                  :p1 => @number } %>
+        </div>
+      </fieldset>
+    </td>
+    <% end %>
+    <% if signed_in? %>
+    <td style="width:200px;">
+      <fieldset class="tool">
+        <legend>รายการบันทึก</legend>
+        <div class="bookmark">
+          <%= link_to 'เรียกดู' %>
+          <%= link_to 'เพิ่ม' %>
+          <%= link_to 'แก้ไข' %>
+          <%= link_to 'แบ่งปัน' %>
+        </div>
+      </fieldset>
+    </td>
+    <% end %>
+    <td>&nbsp;</td>
+  </tr>
+</table>

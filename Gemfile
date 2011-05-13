@@ -33,6 +33,7 @@ group :development do
   gem 'rspec-rails'
   gem 'annotate-models'
   gem 'faker'
+  gem 'nifty-generators'
 end
 
 group :test do
