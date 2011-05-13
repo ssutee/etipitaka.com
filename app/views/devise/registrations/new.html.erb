@@ -1,21 +1,30 @@
-<h2>Sign up</h2>
-
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
-
-  <p><%= f.label :user_name %><br />
-  <%= f.text_field :user_name %></p>
-
-  <p><%= f.label :email %><br />
-  <%= f.email_field :email %></p>
-
-  <p><%= f.label :password %><br />
-  <%= f.password_field :password %></p>
-
-  <p><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></p>
-
-  <p><%= f.submit "Sign up" %></p>
+<% content_for :head do %>
+  <%= render 'layouts/stylesheets' %>
+  <%= javascript_include_tag 'rails' %>
 <% end %>
+<div class="container">
+  <section class="round">
+    <h2>Sign up</h2>
 
-<%= render :partial => "devise/shared/links" %>
+    <%= form_for(resource, :as => resource_name, 
+                           :url => registration_path(resource_name)) do |f| %>
+      <%= devise_error_messages! %>
+
+      <p><%= f.label :user_name %><br />
+      <%= f.text_field :user_name %></p>
+
+      <p><%= f.label :email %><br />
+      <%= f.email_field :email %></p>
+
+      <p><%= f.label :password %><br />
+      <%= f.password_field :password %></p>
+
+      <p><%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation %></p>
+
+      <p><%= f.submit "Sign up" %></p>
+    <% end %>
+
+    <%= render :partial => "devise/shared/links" %>
+  </section>
+</div>

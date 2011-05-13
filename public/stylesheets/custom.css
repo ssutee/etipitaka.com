@@ -20,8 +20,8 @@ section {
 div.searchbar {
   margin-left: auto;
   margin-right: auto;
-  margin-top: 3ex;
-  margin-bottom: 3ex;
+  padding-top: 1ex;
+  padding-bottom: 3ex;
   text-align: center;
 }
 
@@ -250,6 +250,10 @@ div.flash {
   font-size: 120%;
 }
 
+div.results {
+  overflow: auto;
+}
+
 div.results_info {
   text-align: center;
   color: #a52a2a;
@@ -283,4 +287,32 @@ table.results_info tr td{
 table.results_info tr th{
   background: white !important;
   text-align: center;
+}
+
+div.userbox {
+  padding: 8px 10px 10px 8px;
+  float: right;
+}
+
+ul.usernav {
+  display: inline;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+}
+
+ul.usernav li {
+  display: inline;
+  padding: 5px;
+}
+
+ul.usernav li a {
+  text-decoration: none;  
+}
+
+div.header {
+  height: 45px;
+  width: 95%;
+  display: block;
+  margin: 0 auto;
 }
