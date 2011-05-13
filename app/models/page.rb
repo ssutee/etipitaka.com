@@ -16,6 +16,7 @@ class Page < ActiveRecord::Base
   attr_accessible :language, :number, :content, :volume
 
   has_many :items
+  has_many :bookmarks
 
   validates :language, :presence => true, :allow_blank => false,
                        :inclusion => { :in => %w(thai pali) }

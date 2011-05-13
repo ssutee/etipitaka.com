@@ -1,5 +1,12 @@
 require 'spec_helper'
 
 describe User do
-  pending "add some examples to (or delete) #{__FILE__}"
+  before(:each) do
+    @user = Factory(:user) 
+  end
+  describe "bookmarks associations" do
+    it "should have a bookmarks attribute" do
+      @user.should respond_to(:bookmarks) 
+    end
+  end
 end
