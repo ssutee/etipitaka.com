@@ -406,6 +406,7 @@ div.search {
   float: left;
   width: 450px;
   background: #eee;
+  padding-top: 10px;
   padding-left: 10px;
   padding-right: 10px;
 }
@@ -414,6 +415,7 @@ div.compare {
   float: right;
   width: 450px;
   background: #eee;
+  padding-top: 10px;
   padding-left: 10px;
   padding-right: 10px;
 }

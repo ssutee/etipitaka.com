@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<% if request.fullpath != root_url and request.fullpath != home_url %>
+<% if request.fullpath != root_path and request.fullpath != home_path %>
 <%= render 'layouts/navigation' %>
 <% end %>
 
