@@ -6,28 +6,11 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
-<div class="header">
-  <div class="userbox">
-  <% if !signed_in? %>
-    <ul class="usernav">
-      <li>ผู้ใช้ทั่วไป</li>
-      <li><%= link_to 'หน้าแรก', root_path %></li>
-      <li><%= link_to 'ลงทะเบียน', new_user_registration_path %></li>
-      <li><%= link_to 'เข้าสู่ระบบ', new_user_session_path %></li>
-    </ul>
-  <% else %>
-    <ul class="usernav">
-      <li><%= current_user.user_name %></li>
-      <li><%= link_to 'หน้าแรก', root_path %></li>
-      <li><%= link_to 'แก้ไขข้อมูล', edit_user_registration_path %></li>
-      <li><%= link_to 'ออกจากระบบ', destroy_user_session_path %></li>
-    </ul>
-  <% end %>
-  </div>
-</div>
-<% flash.each do |key, value| %>
-  <div class="flash <%= key %>"><%= value %></div>
+
+<% if request.fullpath != root_url and request.fullpath != home_url %>
+<%= render 'layouts/navigation' %>
 <% end %>
+
 <%= yield %>
 <%= debug(params) if Rails.env.development? %>
 </body>

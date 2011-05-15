@@ -1,11 +1,11 @@
 <script>
   $(function() {
-    $( "#bookmark_dialog" ).dialog({ autoOpen: false, width: 430 });
+    $( "#bookmark_adding_dialog" ).dialog({ autoOpen: false, width: 430 });
   });
 </script>
 
 <% if signed_in? and @number.to_i > 0 %>
-<div id="bookmark_dialog" title="เพิ่มรายการจดจำ">
+<div id="bookmark_adding_dialog" title="เพิ่มรายการจดจำ">
   <div style="text-align:center">
     <%= readable_language(@language) %>
   </div>
@@ -91,7 +91,7 @@
         <div class="bookmark">
           <%= link_to 'เรียกดู', bookmarks_path %>
           <%= link_to 'เพิ่ม' , '#', 
-                :onclick => 'return $("#bookmark_dialog").dialog("open");' if @number.to_i > 0 %>
+                :onclick => 'return $("#bookmark_adding_dialog").dialog("open");' if @number.to_i > 0 %>
         </div>
       </fieldset>
     </td>

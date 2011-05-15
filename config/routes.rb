@@ -1,4 +1,6 @@
 Etipitaka::Application.routes.draw do
+  resources :authentications
+
   resources :bookmarks
 
   devise_for :users
@@ -6,6 +8,10 @@ Etipitaka::Application.routes.draw do
   match '/search', :to => 'pages#search'
   match '/read',   :to => 'pages#read'
   match '/compare',   :to => 'pages#compare'
+  match '/home', :to => 'pages#home'
+  match '/share', :to => 'bookmarks#share'
+
+  match '/auth/:provider/callback' => 'authentications#create'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -56,7 +62,7 @@ Etipitaka::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => "pages#search"
+  root :to => "pages#home"
 
   # See how all your routes lay out with "rake routes"
 

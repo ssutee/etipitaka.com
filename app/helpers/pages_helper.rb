@@ -30,6 +30,18 @@ module PagesHelper
     page.items.count > 1 ? tmp + "-#{i_to_thai(page.items.last.number)}" : tmp
   end
 
+  def get_category(language, volume)
+    if language == 'thai' or language == 'pali'
+      if volume <= 8
+        'c1'
+      elsif volume <= 33
+        'c2'
+      else
+        'c3'
+      end
+    end
+  end
+
   def readable_language(language)
     if language == 'thai'
       'พระไตรปิฎก ฉบับบาลีสยามรัฐ (ภาษาไทย)' 
@@ -38,4 +50,11 @@ module PagesHelper
     end
   end
 
+  def readable_language_short(language)
+    if language == 'thai'
+      'บาลีสยามรัฐ (ภาษาไทย)' 
+    elsif language == 'pali'
+      'บาลีสยามรัฐ (ภาษาบาลี)' 
+    end
+  end
 end

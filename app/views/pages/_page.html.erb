@@ -13,7 +13,7 @@
     <div class="excerpt">
       <%= search_excerpt(page.content, @keywords) %>
     </div>
-    <div class="detail">
+    <div class="detail <%=get_category(page.language, page.volume)%>">
       <%= page_detail(page) %>
     </div>
   </td>

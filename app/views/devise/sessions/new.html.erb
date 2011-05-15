@@ -5,22 +5,22 @@
 <div class="container">
   <section class="round">
 
-    <h2>Sign in</h2>
+    <h2>เข้าสู่ระบบ</h2>
 
     <%= form_for(resource, :as => resource_name, 
                            :url => session_path(resource_name)) do |f| %>
 
-      <p><%= f.label :email %><br />
+      <p><%= f.label 'อีเมล' %><br />
       <%= f.email_field :email %></p>
 
-      <p><%= f.label :password %><br />
+      <p><%= f.label 'รหัสผ่าน' %><br />
       <%= f.password_field :password %></p>
 
       <% if devise_mapping.rememberable? -%>
-        <p><%= f.check_box :remember_me %> <%= f.label :remember_me %></p>
+        <p><%= f.check_box :remember_me %> <%= f.label 'จดจำการเข้าสู่ระบบ' %></p>
       <% end -%>
 
-      <p><%= f.submit "Sign in" %></p>
+      <p><%= f.submit "เข้าสู่ระบบ" %></p>
     <% end %>
 
     <%= render :partial => "devise/shared/links" %>

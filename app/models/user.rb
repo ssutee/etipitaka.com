@@ -29,6 +29,7 @@ class User < ActiveRecord::Base
   attr_accessible :user_name, :email, :password, :password_confirmation, :remember_me
 
   has_many :bookmarks
+  has_many :authentications
 
   validates :user_name, :presence => true
 end

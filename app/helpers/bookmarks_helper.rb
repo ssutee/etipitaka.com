@@ -9,4 +9,12 @@ module BookmarksHelper
              " หน้าที่ #{i_to_thai page.number}"+
              " ข้อที่ #{i_to_thai item_number}"
   end
+
+  def bookmark_info(page_id, item_number)
+    page = Page.find(page_id)
+    header = "#{readable_language_short page.language}"+
+             " เล่มที่ #{i_to_thai page.volume}"+
+             " หน้าที่ #{i_to_thai page.number}"+
+             " ข้อที่ #{i_to_thai item_number}"
+  end
 end

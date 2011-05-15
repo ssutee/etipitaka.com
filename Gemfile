@@ -5,6 +5,11 @@ gem 'sqlite3-ruby', '1.3.2', :require => 'sqlite3'
 gem 'gravatar_image_tag'
 gem 'will_paginate'
 gem 'devise'
+gem 'jquery-rails', '>= 0.2.6'
+gem 'omniauth'
+gem 'fb_graph'
+gem 'twitter'
+gem 'bitly'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -34,7 +39,6 @@ group :development do
   gem 'annotate-models'
   gem 'faker'
   gem 'nifty-generators'
-  gem 'jquery-rails', '>= 0.2.6'
 end
 
 group :test do
@@ -42,4 +46,5 @@ group :test do
   gem 'webrat'
   gem 'spork', '0.9.0.rc4'
   gem 'factory_girl_rails'
+  gem 'mocha'
 end
