@@ -1,0 +1,54 @@
+<div id="accordion-<%=i+1%>">
+  <% current_user.bookmarks.each do |bookmark| %>
+    <% if bookmark.page.language == lang %>
+    <div>
+      <h3>
+        <a href="#"><%= bookmark_header bookmark.page.id, bookmark.item_number %></a>
+      </h3>
+      <div>
+        <p><%= bookmark.note %></p>
+        <ul class="bookmark_options">
+          <li>
+            <%= link_to 'อ่าน', 
+                        read_path(:language => bookmark.page.language, 
+                                  :volume => bookmark.page.volume,
+                                  :number => bookmark.page.number)
+            %>
+          </li>
+          <li>|</li>
+          <li>
+            <%= link_to 'ลบ', bookmark, :method => :delete,
+                        :confirm => 'คุณแน่ใจที่จะลบรายการจดจำนี้หรือไม่?' %>
+          </li>
+          <li>|</li>
+          <li>
+            <%= link_to 'แก้ไข', edit_bookmark_path(bookmark) %>
+          </li>
+          <% if current_user.authentications.find_by_provider('facebook') %>
+          <li>|</li>
+          <li>
+              <%=link_to image_tag("facebook_32.png", 
+                                   :size => "32x32", :alt => "Facebook"), 
+                         share_path(:provider => 'facebook',
+                                    :bookmark_id => bookmark.id), 
+                         :class => 'auth_provider'
+              %>
+          </li>
+          <% end %>
+          <% if current_user.authentications.find_by_provider('twitter') %>
+          <li>|</li>
+          <li>
+              <%=link_to image_tag("twitter_32.png", 
+                                   :size => "32x32", :alt => "Twitter"), 
+                         share_path(:provider => 'twitter',
+                                    :bookmark_id => bookmark.id), 
+                         :class => 'auth_provider'
+              %>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+    <% end %>
+  <% end %>
+</div>
