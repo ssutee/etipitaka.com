@@ -1,7 +1,7 @@
 class AuthenticationsController < ApplicationController
   before_filter :authenticate
   def index
-    @title = "Sign in"
+    @title = "Sharing Setting"
     @authentications = current_user.authentications if current_user
   end
 
