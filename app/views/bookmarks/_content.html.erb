@@ -31,6 +31,8 @@
                                    :size => "32x32", :alt => "Facebook"), 
                          share_path(:provider => 'facebook',
                                     :bookmark_id => bookmark.id), 
+                                    :bookmark_id => bookmark.id), 
+                         :confirm => 'คุณแน่ใจหรือไม่ที่จะแบ่งปันรายการจดจำนี้ผ่าน Facebook?',
                          :class => 'auth_provider'
               %>
           </li>
@@ -42,6 +44,7 @@
                                    :size => "32x32", :alt => "Twitter"), 
                          share_path(:provider => 'twitter',
                                     :bookmark_id => bookmark.id), 
+                         :confirm => 'คุณแน่ใจหรือไม่ที่จะแบ่งปันรายการจดจำนี้ผ่าน Twitter?',
                          :class => 'auth_provider'
               %>
           </li>
