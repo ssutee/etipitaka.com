@@ -27,6 +27,10 @@
 
       <p><%= f.submit "ปรับปรุง" %></p>
     <% end %>
+    <div>
+      <%= gravatar_for @user, :size => 60%>
+      <a href="http://gravatar.com/emails">เปลี่ยนรูป</a> 
+    </div> </br>
 
     <h3>ยกเลิกสมัคร</h3>
 

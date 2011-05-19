@@ -14,7 +14,7 @@
     </ul>
   <% else %>
     <ul class="usernav">
-      <li><%= current_user.user_name %></li>
+      <li><%= gravatar_for current_user %>&nbsp;<%= current_user.user_name %></li>
       <li>|</li>
       <li><%= link_to 'หน้าแรก', search_path %></li>
       <li>|</li>
