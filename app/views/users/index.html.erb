@@ -1,0 +1,13 @@
+<% content_for :head do %>
+  <%= render 'layouts/stylesheets' %>
+<% end %>
+<div class="container">
+  <section class="round">
+    <h2>รายชื่อผู้ใช้</h2>
+    <ul>
+      <% @users.each do |user| %>
+        <li><%= user.user_name %></li>
+      <% end %>
+    </ul>
+  </section>
+</div>

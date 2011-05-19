@@ -10,6 +10,7 @@ Etipitaka::Application.routes.draw do
   match '/compare',   :to => 'pages#compare'
   match '/home', :to => 'pages#home'
   match '/share', :to => 'bookmarks#share'
+  match '/users', :to => 'users#index'
 
   match '/auth/:provider/callback' => 'authentications#create'
 
