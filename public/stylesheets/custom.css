@@ -133,8 +133,9 @@ li.book {
 
 
 div.toolbar {
-  height: 75px;
-  position: relative;
+  /* min-height: 75px; */ */
+  height: 12%;
+  /* position: relative; */
 }
 
 div.label_for_goto {
@@ -320,7 +321,9 @@ ul.usernav li a {
 }
 
 div.header {
-  height: 45px;
+  /* height: 45px; */
+  height: 8%;
+  min-height: 45px; */
   width: 95%;
   display: block;
   margin: 0 auto;
@@ -335,7 +338,9 @@ fieldset.tool {
 table.toolbar {
   margin: 0;
   padding: 0;
-  height: 65px;
+  /* height: 65px; */
+  height: 10%;
+  /* min-height: 65px; */ */
 }
 
 legend {

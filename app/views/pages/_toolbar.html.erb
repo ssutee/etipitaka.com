@@ -4,36 +4,6 @@
   });
 </script>
 
-<% if signed_in? and @number.to_i > 0 %>
-<div id="bookmark_adding_dialog" title="เพิ่มรายการจดจำ">
-  <div style="text-align:center">
-    <%= readable_language(@language) %>
-  </div>
-  <%= form_for @bookmark do |f| %>
-    <div style="text-align:center">
-      <span>เล่มที่</span> <span><%= i_to_thai @volume %></span> 
-      <span>หน้าที่</span> <span><%= i_to_thai @number %></span>
-      <span>ข้อที่</span>
-      <span>
-        <% page = Page.find_by_language_and_volume_and_number(@language,@volume,@number) 
-           items = page.items.map { |item| item.number } 
-           items = items.uniq.map { |item| [i_to_thai(item), item] }
-        %>
-        <%= f.select :item_number, items %>
-      </span>
-      <%= f.hidden_field :refer, :name => :refer, :value => request.request_uri.to_s %>
-      <%= f.hidden_field :page_id, :value => page.id %>
-    </div>
-    <div class="field">
-      <%= f.text_area :note %>
-    </div>
-    <div class="actions">
-      <%= f.submit "เพิ่ม" %>
-    </div>
-  <% end %>
-</div>
-<% end %>
-
 <table class="toolbar">
   <tr>
     <td style="width: 260px;">
@@ -99,3 +69,34 @@
     <td>&nbsp;</td>
   </tr>
 </table>
+
+<% if signed_in? and @number.to_i > 0 %>
+<div id="bookmark_adding_dialog" title="เพิ่มรายการจดจำ">
+  <div style="text-align:center">
+    <%= readable_language(@language) %>
+  </div>
+  <%= form_for @bookmark do |f| %>
+    <div style="text-align:center">
+      <span>เล่มที่</span> <span><%= i_to_thai @volume %></span> 
+      <span>หน้าที่</span> <span><%= i_to_thai @number %></span>
+      <span>ข้อที่</span>
+      <span>
+        <% page = Page.find_by_language_and_volume_and_number(@language,@volume,@number) 
+           items = page.items.map { |item| item.number } 
+           items = items.uniq.map { |item| [i_to_thai(item), item] }
+        %>
+        <%= f.select :item_number, items %>
+      </span>
+      <%= f.hidden_field :refer, :name => :refer, :value => request.request_uri.to_s %>
+      <%= f.hidden_field :page_id, :value => page.id %>
+    </div>
+    <div class="field">
+      <%= f.text_area :note %>
+    </div>
+    <div class="actions">
+      <%= f.submit "เพิ่ม" %>
+    </div>
+  <% end %>
+</div>
+<% end %>
+

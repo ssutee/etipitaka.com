@@ -52,6 +52,10 @@ class PagesController < ApplicationController
     volume = params[:volume]
     number = params[:number]
 
+    if language.nil? or volume.nil? or number.nil?
+      redirect_to read_path(:language => 'thai', :volume => 1, :number => 0)
+    end
+
     if !params[:read].nil? and params[:read].has_key?(:page_number)
       language = session[:cur_language]
       volume = session[:cur_volume]
