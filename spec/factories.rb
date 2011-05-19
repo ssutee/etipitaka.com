@@ -13,3 +13,10 @@ Factory.define :page do |page|
   page.volume       1
   page.content      'foobar barfoo'
 end
+
+Factory.define :item do |item|
+  item.page_id    1
+  item.number     1
+  item.section    1
+  item.begin      true
+end

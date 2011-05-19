@@ -3,6 +3,10 @@
 class BookmarksController < ApplicationController
   def index
     @title = "Bookmark"
+    if !signed_in?
+      flash[:error] = "กรุณาเข้าสู่ระบบก่อนจึงจะสามารถดูรายการจดจำ"
+      redirect_to search_path
+    end
   end
 
   def create

@@ -4,6 +4,12 @@ require 'spec_helper'
 
 describe PagesController do
   render_views
+
+  before(:each) do
+    Factory(:page)
+    Factory(:item)
+  end
+
   describe "GET 'search'" do
     it "should be successful" do
       get 'search'
@@ -29,14 +35,9 @@ describe PagesController do
   end
 
   describe "GET 'read'" do
-    it "should be successful" do
+    it "should redirect to first page of Thai" do
       get 'read'
-      response.should be_success
-    end
-
-    it "should have the right title" do
-      get 'read'
-      response.should have_selector('title', :content => "Read")
+      response.should redirect_to read_path(:language => 'thai', :volume => 1, :number => 0)
     end
 
   end
