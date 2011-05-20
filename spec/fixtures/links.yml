@@ -1,0 +1,22 @@
+# == Schema Information
+# Schema version: 20110520135313
+#
+# Table name: links
+#
+#  id          :integer         not null, primary key
+#  title       :string(255)
+#  url         :string(255)
+#  description :text
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+
+one:
+  title: MyString
+  url: MyString
+  description: MyText
+
+two:
+  title: MyString
+  url: MyString
+  description: MyText

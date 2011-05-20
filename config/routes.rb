@@ -1,4 +1,8 @@
 Etipitaka::Application.routes.draw do
+  resources :news
+
+  resources :links
+
   resources :authentications
   resources :bookmarks
 

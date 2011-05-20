@@ -1,0 +1,21 @@
+<% title "Links" %>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Url</th>
+    <th>Description</th>
+  </tr>
+  <% for link in @links %>
+    <tr>
+      <td><%= link.title %></td>
+      <td><%= link.url %></td>
+      <td><%= link.description %></td>
+      <td><%= link_to "Show", link %></td>
+      <td><%= link_to "Edit", edit_link_path(link) %></td>
+      <td><%= link_to "Destroy", link, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Link", new_link_path %></p>
