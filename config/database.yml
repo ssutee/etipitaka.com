@@ -16,7 +16,9 @@ test:
   timeout: 5000
 
 production:
-  adapter: sqlite3
-  database: db/production.sqlite3
-  pool: 5
+  adapter: mysql
+  database: etipitaka
   timeout: 5000
+  username: passenger
+  password: passenger1234
+  host: localhost
