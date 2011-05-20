@@ -1,8 +1,6 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.0.6'
-gem 'mysql'
-gem 'sqlite3-ruby', '1.3.2', :require => 'sqlite3'
 gem 'gravatar_image_tag'
 gem 'will_paginate'
 gem 'devise'
@@ -40,6 +38,7 @@ group :development do
   gem 'annotate-models'
   gem 'faker'
   gem 'nifty-generators'
+  gem 'sqlite3-ruby', '1.3.2', :require => 'sqlite3'
 end
 
 group :test do
@@ -48,4 +47,9 @@ group :test do
   gem 'spork', '0.9.0.rc4'
   gem 'factory_girl_rails'
   gem 'mocha'
+  gem 'sqlite3-ruby', '1.3.2', :require => 'sqlite3'
+end
+
+group :production do
+  # gem 'mysql'
 end
