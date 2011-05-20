@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> <%= title %></title>
+  <%= stylesheet_link_tag 'home', :media => 'screen' %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+
+<div id="wrap">
+  <div id="header2"></div>
+
+  <div id="menu">
+    <ul>
+      <li><a href="#"><img src="/images/menu1.png"  border="0"/></a></li>
+      <li><a href="#"><img src="/images/menu2.png"  border="0" /></a></li>
+      <li><a href="#"><img src="/images/menu3.png"  border="0" /></a></li>
+      <li><a href="#"><img src="/images/menu4.png"  border="0" /></a></li>
+    </ul>
+  </div>
+
+  <div id="content">
+    <div class="right"> 
+      <div class="content_right">
+        <h2 class="sub_title round"><%= @topic %></h2>
+      </div>
+      <div class="content_right main_text">
+        <%= yield %>
+      </div>
+    </div>
+
+    <div class="left"> 
+      <div id="h2" class="news_title round">ข่าวล่าสุด</div>
+        <%# <%= render @news %>
+      <div align="right">
+        <h2><a href="#">ดูข่าวทั้งหมด</a></h2>
+      </div>
+
+      <div id="h2" class="links_title round">เว็บแนะนำ</div>
+        <%# <%= render @links %>
+    </div>
+
+    <div style="clear: both;"> </div>
+
+    <div id="footer">
+        Copyright © 2011 Sutee Sudprasert. 
+        All rights reserved.
+        Powered by Ruby on Rails.
+    </div>
+  </div>
+</div>
+</body>
+</html>

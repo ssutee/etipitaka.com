@@ -29,13 +29,13 @@ border: 0px solid #000;
 }
 #header2 {
 height: 145px;
-background: #554d42 url(images/header2.png) no-repeat;
+background: #554d42 url(/images/header2.png) no-repeat;
 }
 #menu {
 height: 50px;
 line-height: 30px;
 padding: 0px 0 0 375px;
-background-image:url(images/header3.png);
+background-image:url(/images/header3.png);
 }
 #menu ul {
 list-style-type: none;
@@ -57,7 +57,7 @@ text-decoration: none;
 
 #content {
 padding: 0 0px 0px 0;
-background:url(images/bg1.png);
+background:url(/images/bg1.png);
 background-repeat:repeat-y;
 }
 .content_right {
@@ -91,7 +91,6 @@ text-decoration: none;
 }
 #bg_right {
 padding: 2px 0px 0px 20px;
-/* background:url(images/bg_right.png) no-repeat; */
 }
 
 .left {
@@ -126,13 +125,12 @@ float:right;
 #h1 {
 padding: 0 0px 0px 0;
 height:5px;
-background:url(images/) no-repeat ;
+background:url(/images/) no-repeat ;
 }
 
 #h2 {
 padding: 0 0px 0px 0;
 height:27px;
-/* background:url(images/h2.png) center no-repeat ; */
 }
 
 h2.sub_title {
@@ -143,14 +141,14 @@ h2.sub_title {
 #h3 {
 padding: 0px 0px 0px 0;
 height:27px;
-background:url(images/h3.png) no-repeat ;
+background:url(/images/h3.png) no-repeat ;
 }
 #bg {
 padding: 0 0px 0px 0;
 /* background:url(images/box1.png) no-repeat top ; */
 }
 #footer {
-background-image:url(images/footer.png);
+background-image:url(/images/footer.png);
 height:25px;
 text-align: center;
 padding-top: 3px;
@@ -166,7 +164,7 @@ color:#FFF;
   border-radius: 10px;
 }
 
-div.news_title {
+div.news_title, div.links_title {
   text-align: center;
   color: #fff;
   background: #3980ae;
