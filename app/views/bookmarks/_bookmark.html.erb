@@ -1,0 +1,13 @@
+<tr>
+  <td class="bookmark">
+    <span class="title">
+      <%= link_to bookmark_info(bookmark.page.id, bookmark.item_number), read_path(:language => bookmark.page.language,
+                                                                                   :volume => bookmark.page.volume,
+                                                                                   :number => bookmark.page.number)%> 
+    </span>
+    <span class="content"><%= bookmark.note %></span> 
+    <span class="timestamp">
+      บันทึกเมื่อ <%= bookmark.created_at.strftime("%d/%m/%Y") %>
+    </span>
+</td>
+</tr>

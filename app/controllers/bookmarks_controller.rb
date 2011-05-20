@@ -12,10 +12,12 @@ class BookmarksController < ApplicationController
   def create
     if signed_in?
       current_user.bookmarks.create!(params[:bookmark])
+      flash[:notice] = "รายการจดจำได้ถูกบันทึกแล้ว"
+      redirect_to params[:refer]
     else
-      flash.now[:notice] = "กรุณาเข้าสู่ระบบก่อนที่จะสร้างรายการจดจำ"
+      flash[:error] = "กรุณาเข้าสู่ระบบก่อนที่จะสร้างรายการจดจำ"
+      redirect_to search_path
     end
-    redirect_to params[:refer]
   end
 
   def destroy

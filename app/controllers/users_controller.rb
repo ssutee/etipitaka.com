@@ -9,4 +9,10 @@ class UsersController < ApplicationController
     @title = "Users"
     @users = User.all
   end
+  
+  def show
+    @user = User.find(params[:id])
+    @title = "#{@user.user_name}"
+    @bookmarks = @user.bookmarks.paginate(:page => params[:page], :per_page => 10)
+  end
 end

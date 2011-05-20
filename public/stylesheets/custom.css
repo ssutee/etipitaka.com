@@ -434,3 +434,52 @@ ul.users li {
   padding-bottom: 5px;
   list-style: none;
 }
+
+table.profile { 
+  width: 100%; 
+  margin-bottom: 0;
+}
+
+td.main { 
+  width: 70%; 
+  padding: 1em;
+}
+
+td.sidebar { 
+  width: 30%; 
+  padding: 1em; 
+  vertical-align: top; 
+  background: #eee;
+}
+
+td.sidebar .t1 {
+  font-weight: bold;
+  padding-right: 10px;
+}
+
+.profile img.gravatar { 
+  border: 1px solid #999; 
+  margin-bottom: -15px;
+}
+
+table.bookmarks tr td.bookmark { 
+  border-top: 1px 
+  solid #ccc; 
+  vertical-align: top; 
+  padding-top: 10px;
+  background: white !important;
+}
+table.bookmarks tr td.bookmark span.title { 
+  display: block; 
+  font-size: 90%; 
+}
+
+table.bookmarks tr td.bookmark span.title a { 
+  text-decoration: none;  
+}
+
+table.bookmarks tr td.bookmark span.timestamp { 
+  display: block; 
+  font-size: 85%; 
+  color: #666;
+}

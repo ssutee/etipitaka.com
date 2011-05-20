@@ -13,7 +13,9 @@
 #
 
 class Bookmark < ActiveRecord::Base
-  attr_accessible :note, :page_id, :user_id, :item_number
+  attr_accessible :note, :page_id, :user_id, :item_number, :created_at
   belongs_to :user
   belongs_to :page
+
+  default_scope :order => 'bookmarks.created_at DESC'
 end

@@ -1,0 +1,36 @@
+<% content_for :head do %>
+  <%= render 'layouts/stylesheets' %>
+<% end %>
+<div class="container">
+  <section class="round">
+    <table class="profile" summary="Profile information">
+      <tr>
+        <td class="main">
+          <h1>
+          <%= gravatar_for(@user, :size => 128) %>
+          <%= @user.user_name %> 
+          </h1>
+          </br>
+          <% unless @user.bookmarks.empty? %>
+            <%= will_paginate(@bookmarks,:renderer => 'MyLinkRenderer',
+                                     :next_label => '→',
+                                     :previous_label => '←')%>
+            <table class="bookmarks" summary="User bookmarks">
+              <%= render @bookmarks %> 
+            </table>
+          <% end %>
+        </td>
+        <td class="sidebar round">
+          <span class="t1">ชื่อ</span>
+          <span><%= @user.user_name %></span>
+          </br>
+          <span class="t1">เป็นสมาชิกเมื่อ</span>
+          <span><%= @user.created_at.strftime("%d/%m/%Y") %></span>
+          </br>
+          <span class="t1">รายการจดจำ</span>
+          <span><%= @user.bookmarks.count %></span>
+        </td>
+      </tr>
+    </table>
+  </section>
+</div>
