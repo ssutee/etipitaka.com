@@ -12,4 +12,5 @@
 
 class Post < ActiveRecord::Base
   attr_accessible :title, :content, :created_at
+  default_scope :order => 'posts.created_at DESC'
 end
