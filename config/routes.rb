@@ -1,4 +1,6 @@
 Etipitaka::Application.routes.draw do
+  resources :posts
+
   resources :news
 
   resources :links

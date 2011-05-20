@@ -1,0 +1,21 @@
+# == Schema Information
+# Schema version: 20110520140515
+#
+# Table name: posts
+#
+#  id         :integer         not null, primary key
+#  title      :string(255)
+#  content    :text
+#  created_at :datetime
+#  updated_at :datetime
+#
+
+one:
+  title: MyString
+  content: MyText
+  created_at: 2011-05-20 21:05:15
+
+two:
+  title: MyString
+  content: MyText
+  created_at: 2011-05-20 21:05:15

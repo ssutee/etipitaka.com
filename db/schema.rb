@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110520134739) do
+ActiveRecord::Schema.define(:version => 20110520140515) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -123,6 +123,13 @@ ActiveRecord::Schema.define(:version => 20110520134739) do
   add_index "pages", ["language"], :name => "index_pages_on_language"
   add_index "pages", ["number"], :name => "index_pages_on_number"
   add_index "pages", ["volume"], :name => "index_pages_on_volume"
+
+  create_table "posts", :force => true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
