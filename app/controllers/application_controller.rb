@@ -28,4 +28,11 @@ class ApplicationController < ActionController::Base
       redirect_to new_user_session_path
     end
   end
+
+  def require_admin
+    if current_user.nil? or !current_user.admin?
+      flash[:error] = 'คุณไม่มีสิทธิในการเข้าถึงหน้านี้'
+      redirect_to search_path
+    end
+  end
 end
