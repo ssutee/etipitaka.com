@@ -289,12 +289,12 @@ table.results_info {
   margin-bottom: 0.5em;
 }
 
-table.results_info tr td{
+table.results_info tr td {
   background: white !important;
   text-align: center;
 }
 
-table.results_info tr th{
+table.results_info tr th {
   background: white !important;
   text-align: center;
 }
@@ -423,4 +423,14 @@ div.compare {
   padding-top: 10px;
   padding-left: 10px;
   padding-right: 10px;
+}
+
+ul.users {
+  margin-top: 1em;
+}
+
+ul.users li {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  list-style: none;
 }

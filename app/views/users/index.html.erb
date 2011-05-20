@@ -4,9 +4,12 @@
 <div class="container">
   <section class="round">
     <h2>รายชื่อผู้ใช้</h2>
-    <ul>
+    <ul class="users">
       <% @users.each do |user| %>
-        <li><%= user.user_name %></li>
+        <li>
+          <%= gravatar_for user, :size => 40 %>
+          <%= link_to user.user_name, user %>
+        </li>
       <% end %>
     </ul>
   </section>

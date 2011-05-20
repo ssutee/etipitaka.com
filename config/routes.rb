@@ -1,6 +1,5 @@
 Etipitaka::Application.routes.draw do
   resources :authentications
-
   resources :bookmarks
 
   devise_for :users
@@ -11,6 +10,7 @@ Etipitaka::Application.routes.draw do
   match '/home', :to => 'pages#home'
   match '/share', :to => 'bookmarks#share'
   match '/users', :to => 'users#index'
+  match '/users/:id' => 'users#show', :as => :user
 
   match '/auth/:provider/callback' => 'authentications#create'
 
