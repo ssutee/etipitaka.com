@@ -1,0 +1,12 @@
+<ul class="posts">
+<% @posts.each do |post| %>
+  <li>
+    <span class="post_title">
+      <%= link_to post.title, new_path(post) %>
+    </span>
+    <span class="post_date">
+      <%= post.created_at.strftime("%d/%m/%Y") %>
+    </span>
+  </li>
+<% end %>
+</ul>

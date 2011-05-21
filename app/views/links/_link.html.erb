@@ -1,0 +1,6 @@
+<ul class="links">
+<% @links.each do |link| %>
+  <li><%= link_to link.title, link.url, :target => '_blank', 
+                                        :title => link.description %></li>
+<% end %>
+</ul>

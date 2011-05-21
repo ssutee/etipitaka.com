@@ -2,11 +2,18 @@
 <html>
 <head>
   <title> <%= title %></title>
+  <%= javascript_include_tag 'jquery-1.5.1.min' %>
+  <%= javascript_include_tag 'jquery_ujs' %>
+  <%= render 'layouts/stylesheets' %>
   <%= csrf_meta_tag %>
 </head>
 <body>
 <%= render 'layouts/navigation' %>
-<%= yield %>
+<div class="container">
+  <section class="round">
+    <%= yield %>
+  </section>
+</div>
 <%= debug(params) if Rails.env.development? %>
 </body>
 </html>

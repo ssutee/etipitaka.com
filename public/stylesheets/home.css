@@ -105,7 +105,7 @@ color:#900;
 font-size: 12px;
 }
 .left ul {
-padding: 10px 0 15px 35px;
+padding: 10px 0 5px 35px;
 list-style-type: square;
 color:#006;
 }
@@ -169,4 +169,32 @@ div.news_title, div.links_title {
   color: #fff;
   background: #3980ae;
   text-shadow: black 0.1em 0.1em 0.2em;
+}
+
+ul.posts li span.post_title {
+}
+
+span.post_date {
+  display: block;
+  color: #A69E8A;
+}
+
+div.post_entry p {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+div.post_entry {
+  margin-bottom: 35px;
+  margin-left: 10px;
+}
+
+div.post_entry h3 {
+  font-size: 150%;
+  color: #022e61;
+}
+
+div.main_text p {
+  margin-top: 15px;
+  margin-bottom: 15px;
 }

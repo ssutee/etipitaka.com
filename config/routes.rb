@@ -1,8 +1,5 @@
 Etipitaka::Application.routes.draw do
   resources :posts
-
-  resources :news
-
   resources :links
 
   resources :authentications
@@ -20,6 +17,8 @@ Etipitaka::Application.routes.draw do
   match '/auth/:provider/callback' => 'authentications#create'
 
   match '/home', :to => 'home_pages#home'
+  match '/news', :to => 'home_pages#news'
+  match '/news/:id', :to => 'home_pages#recent_news', :as => :new
 
   root :to => "home_pages#home"
 

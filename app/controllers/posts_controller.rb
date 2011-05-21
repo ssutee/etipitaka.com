@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_filter :require_admin
-
+  layout "simple"
   def index
     @posts = Post.all
   end

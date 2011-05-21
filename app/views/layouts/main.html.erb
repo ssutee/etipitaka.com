@@ -3,6 +3,8 @@
 <head>
   <title> <%= title %></title>
   <%= stylesheet_link_tag 'home', :media => 'screen' %>
+  <%= javascript_include_tag 'jquery-1.5.1.min' %>
+  <%= javascript_include_tag 'jquery_ujs' %>
   <%= csrf_meta_tag %>
 </head>
 <body>
@@ -12,10 +14,10 @@
 
   <div id="menu">
     <ul>
-      <li><a href="#"><img src="/images/menu1.png"  border="0"/></a></li>
-      <li><a href="#"><img src="/images/menu2.png"  border="0" /></a></li>
-      <li><a href="#"><img src="/images/menu3.png"  border="0" /></a></li>
-      <li><a href="#"><img src="/images/menu4.png"  border="0" /></a></li>
+      <li><%= link_to image_tag('menu1.png', :alt => 'หน้าหลัก', :border => 0), home_path  %></li>
+      <li><%= link_to image_tag('menu2.png', :alt => 'หน้าหลัก', :border => 0), home_path  %></li>
+      <li><%= link_to image_tag('menu3.png', :alt => 'หน้าหลัก', :border => 0), home_path  %></li>
+      <li><%= link_to image_tag('menu4.png', :alt => 'หน้าหลัก', :border => 0), home_path  %></li>
     </ul>
   </div>
 
@@ -31,13 +33,12 @@
 
     <div class="left"> 
       <div id="h2" class="news_title round">ข่าวล่าสุด</div>
-        <%# <%= render @news %>
-      <div align="right">
-        <h2><a href="#">ดูข่าวทั้งหมด</a></h2>
+        <%= render 'posts/post' %>
+      <div align="right" style="margin-bottom: 15px;">
+        <h2><%= link_to 'ดูข่าวทั้งหมด', news_path %></h2>
       </div>
-
       <div id="h2" class="links_title round">เว็บแนะนำ</div>
-        <%# <%= render @links %>
+        <%= render @links %>
     </div>
 
     <div style="clear: both;"> </div>
