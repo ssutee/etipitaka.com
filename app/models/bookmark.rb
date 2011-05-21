@@ -13,7 +13,7 @@
 #
 
 class Bookmark < ActiveRecord::Base
-  attr_accessible :note, :page_id, :user_id, :item_number, :created_at
+  attr_accessible :note, :page_id, :user_id, :item_number, :created_at, :updated_at
   belongs_to :user
   belongs_to :page
 
