@@ -17,6 +17,7 @@ test:
 
 production:
   adapter: mysql
+  encoding: utf8
   database: etipitaka
   timeout: 5000
   username: passenger
