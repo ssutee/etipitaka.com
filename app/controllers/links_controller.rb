@@ -29,6 +29,14 @@ class LinksController < ApplicationController
 
   def update
     @link = Link.find(params[:id])
+
+    if !params[:link].nil? and params[:link][:private] == "1"
+      @link.private = true
+    else
+      @link.private = false
+    end
+    @link.save
+
     if @link.update_attributes(params[:link])
       redirect_to @link, :notice  => "Successfully updated link."
     else

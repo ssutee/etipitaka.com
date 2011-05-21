@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20110512125943
+# Schema version: 20110521115615
 #
 # Table name: users
 #
@@ -17,6 +17,7 @@
 #  created_at             :datetime
 #  updated_at             :datetime
 #  user_name              :string(255)     default(""), not null
+#  admin                  :boolean
 #
 
 class User < ActiveRecord::Base

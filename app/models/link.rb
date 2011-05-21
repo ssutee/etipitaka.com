@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20110520135313
+# Schema version: 20110521115615
 #
 # Table name: links
 #
@@ -9,8 +9,9 @@
 #  description :text
 #  created_at  :datetime
 #  updated_at  :datetime
+#  private     :boolean
 #
 
 class Link < ActiveRecord::Base
-  attr_accessible :title, :url, :description
+  attr_accessible :title, :url, :description, :private
 end
