@@ -6,7 +6,7 @@ class HomePagesController < ApplicationController
 
   def home
     @title = "Home"
-    @topic = "โปรแกรม E-Tipitaka"
+    @topic = "หน้าแรก"
   end
 
   def news
@@ -19,6 +19,21 @@ class HomePagesController < ApplicationController
     @title = "Recent news"
     @topic = "ข่าวล่าสุด"
     @all_posts = Post.where(:id => params[:id])
+  end
+
+  def background
+    @title = "Background"
+    @topic = "ประวัติความเป็นมา"
+  end
+
+  def howto
+    @title = "Howto"
+    @topic = "วิธีใช้โปรแกรม"
+  end
+
+  def download
+    @title = "Download"
+    @topic = "ดาวน์โหลด"
   end
 
   private
