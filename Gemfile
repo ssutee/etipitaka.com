@@ -50,6 +50,6 @@ group :test do
   gem 'sqlite3-ruby', '1.3.2', :require => 'sqlite3'
 end
 
-group :production do
-  gem 'mysql2', '0.2.6'
-end
+# group :production do
+#   gem 'mysql2', '0.2.6'
+# end
