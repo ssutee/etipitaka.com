@@ -65,10 +65,12 @@ class PagesController < ApplicationController
 
     if language.nil? or volume.nil?
       redirect_to read_path(:language => 'thai', :volume => 1, :number => 0)
+      return
     end
 
     if number.nil?
       redirect_to read_path(:language => language, :volume => volume, :number => 0)
+      return
     end
 
     session[:cur_language] = language
