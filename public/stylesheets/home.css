@@ -68,6 +68,7 @@ margin-right: 20px;
 div.main_text {
   padding-left: 10px;
   padding-right: 10px;
+  font-size: 140%;
 }
 
 .right {
@@ -198,3 +199,4 @@ div.main_text p {
   margin-top: 15px;
   margin-bottom: 15px;
 }
+

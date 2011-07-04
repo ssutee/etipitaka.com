@@ -27,7 +27,16 @@ class HomePagesController < ApplicationController
   end
 
   def howto
-    @title = "Howto"
+    @doc = params[:doc]
+    if params[:doc] == 'android'
+      @title = "Howto - Android"
+    elsif params[:doc] == 'ipad'
+      @title = "Howto - iPad"
+    elsif params[:doc] == 'iphone'
+      @title = "Howto - iPhone"
+    else
+      @title = "Howto"
+    end
     @topic = "วิธีใช้โปรแกรม"
   end
 
@@ -35,7 +44,7 @@ class HomePagesController < ApplicationController
     @title = "Download"
     @topic = "ดาวน์โหลด"
   end
-
+  
   private
     def create_links_and_posts
       @links = Link.all

@@ -20,7 +20,8 @@ Etipitaka::Application.routes.draw do
   match '/news', :to => 'home_pages#news'
   match '/news/:id', :to => 'home_pages#recent_news', :as => :new
   match '/background', :to => 'home_pages#background'
-  match '/howto', :to => 'home_pages#howto'
+  match '/howto/:doc', :to => 'home_pages#howto', :as => :doc
+  match '/howto', :to => 'home_pages#howto', :as => :howto
   match '/download', :to => 'home_pages#download'
   
 

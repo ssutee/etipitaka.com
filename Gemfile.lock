@@ -152,7 +152,7 @@ GEM
       activesupport (= 3.0.6)
       rake (>= 0.8.7)
       thor (~> 0.14.4)
-    rake (0.8.7)
+    rake (0.9.2)
     rash (0.3.0)
       hashie (~> 1.0.0)
     rest-client (1.6.1)
@@ -215,6 +215,7 @@ DEPENDENCIES
   nifty-generators
   omniauth
   rails (= 3.0.6)
+  rake (= 0.9.2)
   rspec
   rspec-rails
   spork (= 0.9.0.rc4)
