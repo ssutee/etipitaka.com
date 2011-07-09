@@ -10,8 +10,6 @@ gem 'omniauth'
 gem 'fb_graph'
 gem 'twitter'
 gem 'bitly'
-gem "rack-google-analytics", "~> 0.9.2"
-
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
