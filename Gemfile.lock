@@ -215,7 +215,7 @@ DEPENDENCIES
   mocha
   nifty-generators
   omniauth
-  rack-google-analytics
+  rack-google-analytics (~> 0.9.2)
   rails (= 3.0.6)
   rake (= 0.9.2)
   rspec
