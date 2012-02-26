@@ -10,6 +10,7 @@ gem 'omniauth'
 gem 'fb_graph'
 gem 'twitter'
 gem 'bitly'
+gem 'yaml_db'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
