@@ -20,7 +20,7 @@ gem 'yaml_db'
 # gem 'unicorn'
 
 # Deploy with Capistrano
-# gem 'capistrano'
+gem 'capistrano'
 
 # To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
 # gem 'ruby-debug'
@@ -37,7 +37,6 @@ gem 'yaml_db'
 # and rake tasks are available in development mode:
 group :development do
   gem 'rspec-rails'
-  gem 'annotate-models'
   gem 'faker'
   gem 'nifty-generators'
   gem 'sqlite3-ruby', '1.3.2', :require => 'sqlite3'

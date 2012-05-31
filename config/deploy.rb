@@ -1,26 +1,31 @@
 # RVM bootstrap
-$:.unshift(File.expand_path("~/.rvm/lib"))
+# $:.unshift(File.expand_path("~/.rvm/lib"))
+
+# set :rvm_ruby_string, '1.9.2-p180'
+# set :rvm_ruby_string, '1.9.3-p194'
+
+set :rvm_ruby_string, ENV['GEM_HOME'].gsub(/.*\//,"")
+
 require 'rvm/capistrano'
-set :rvm_ruby_string, '1.9.2-p180'
-set :rvm_type, :system
+set :rvm_type, :user
 
 # bundler bootstrap
 require 'bundler/capistrano'
 
 #main detail
 
-set :application, "50.56.125.42"
-role :web, "50.56.125.42"                          # Your HTTP server, Apache/etc
-role :app, "50.56.125.42"                          # This may be the same as your `Web` server
-role :db,  "50.56.125.42", :primary => true # This is where Rails migrations will run
+set :application, "203.114.103.69"
+role :web, "203.114.103.69"                          # Your HTTP server, Apache/etc
+role :app, "203.114.103.69"                          # This may be the same as your `Web` server
+role :db,  "203.114.103.69", :primary => true # This is where Rails migrations will run
 
 # server details
 
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
-set :deploy_to, "/var/www/www.etipitaka.com"
+set :deploy_to, "/home/sutee/www/etipitaka"
 set :deploy_via, :remote_cache
-set :user, "passenger"
+set :user, "sutee"
 set :use_sudo, false
 
 # repo details
