@@ -14,10 +14,10 @@ require 'bundler/capistrano'
 
 #main detail
 
-set :application, "203.114.103.69"
-role :web, "203.114.103.69"                          # Your HTTP server, Apache/etc
-role :app, "203.114.103.69"                          # This may be the same as your `Web` server
-role :db,  "203.114.103.69", :primary => true # This is where Rails migrations will run
+set :application, "101.109.250.142"
+role :web, "101.109.250.142"                          # Your HTTP server, Apache/etc
+role :app, "101.109.250.142"                          # This may be the same as your `Web` server
+role :db,  "101.109.250.142", :primary => true # This is where Rails migrations will run
 
 # server details
 
