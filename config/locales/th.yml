@@ -1,0 +1,19 @@
+th:
+  hello: "สวัสดี ชาวโลก!"
+  will_paginate:
+    previous_label: "&#8592; ก่อนหลัง"
+    next_label: "ถัดไป &#8594;"
+    page_gap: "&hellip;"
+
+    page_entries_info:
+      single_page:
+        zero:  "ไม่พบ %{model}"
+        one:   "แสดง 1 %{model}"
+        other: "แสดงทั้งหมด %{count} %{model}"
+      single_page_html:
+        zero:  "ไม่พบ %{model}"
+        one:   "แสดง <b>1</b> %{model}"
+        other: "แสดง <b>ทั้งหมด&nbsp;%{count}</b> %{model}"
+
+      multi_page: "แสดง %{model} %{from} - %{to} ของ %{count} จากทั้งหมด"
+      multi_page_html: "แสดง %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> ของ <b>%{count}</b> จากทั้งหมด"

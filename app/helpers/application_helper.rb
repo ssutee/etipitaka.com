@@ -7,7 +7,7 @@ end
 
 include PagesHelper
 
-class MyLinkRenderer < WillPaginate::ViewHelpers::LinkRenderer
+class MyLinkRenderer < ::WillPaginate::ActionView::LinkRenderer
 
   protected
     

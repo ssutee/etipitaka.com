@@ -1,14 +1,14 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.6'
+gem 'rails', '3.0.20'
 gem 'rake', '0.9.2'
 gem 'gravatar_image_tag'
-gem 'will_paginate'
+gem 'will_paginate', '~> 3.0'
 gem 'devise'
 gem 'jquery-rails', '>= 0.2.6'
-gem 'omniauth'
+gem 'omniauth', '~> 0.3.2'
+gem 'twitter', :git => 'https://github.com/sferik/twitter', :tag => 'v2.2.1'
 gem 'fb_graph'
-gem 'twitter'
 gem 'bitly'
 gem 'yaml_db'
 
