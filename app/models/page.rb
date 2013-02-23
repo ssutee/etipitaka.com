@@ -30,6 +30,10 @@ class Page < ActiveRecord::Base
     where("language = ? AND volume = ?",language, volume).count 
   end
 
+  def self.all_pages(language, volume)
+    select("content").where("language = ? AND volume = ?",language, volume)
+  end
+
   def self.content(language, volume, number)
     pages = where("language = ? AND volume = ? AND number = ?",language, volume, number)
     pages.empty? ? nil : pages.first.content

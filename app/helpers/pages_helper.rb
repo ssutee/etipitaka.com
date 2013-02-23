@@ -21,7 +21,7 @@ module PagesHelper
   def search_excerpt(content, keywords)
     tmp = excerpt(content, keywords.split[0].gsub('+',' '), :radius => 50) 
     highlight(tmp, keywords.split.map { |keyword| keyword.gsub('+',' ') },
-              :highlighter => '<span class="highlight_excerpt">\1</span>')
+      :highlighter => '<span class="highlight_excerpt">\1</span>')
   end
 
   def page_detail(page)

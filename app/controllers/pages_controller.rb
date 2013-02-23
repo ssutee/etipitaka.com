@@ -82,12 +82,16 @@ class PagesController < ApplicationController
 
     @books = Book.where(:language => language) unless language.nil? 
     @content = Page.content(language, volume, number) unless number.nil?
-    
+    @all_pages = Page.all_pages(language, volume).map do |page|
+      page[:content]
+    end
+
+    @number = 0
+
     if (number.to_i == 0 or @content.nil?) and (items.nil? or items.empty?)
       @content = "พระไตรปิฎกเล่มที่ #{i_to_thai(volume)} มีทั้งหมด\n"
       @content += "    #{i_to_thai(Page.max(language,volume))} หน้า"
       @content += " #{i_to_thai(Item.max(language,volume))} ข้อ\n"
-      @number = 0
     elsif !items.nil? and !items.empty? and @content.nil?
       @content = "พบข้อที่ #{i_to_thai(items.first.number)}"
       @content += " ทั้งหมด #{i_to_thai(items.count)} แห่ง\n"
@@ -120,6 +124,7 @@ class PagesController < ApplicationController
     if signed_in?
       @bookmark = Bookmark.new
     end
+        
   end
 
   def compare

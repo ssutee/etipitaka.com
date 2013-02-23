@@ -28,28 +28,14 @@
       </div>
     </td>
     <td style="vertical-align:top">
-        <% if @number.to_i > 1 %>
-        <div class="back_button">
-          <%= link_to image_tag('left.png', 
-                                :alt => '<<', 
-                                :size => "32x32"), 
-                      :action => 'read', 
-                      :volume => @volume,
-                      :number => @number.to_i-1,
-                      :keywords => @keywords,
-                      :language => @language %>
-        </div>
-        <% end %>
-        <div class="next_button">
-          <%= link_to image_tag('right.png', 
-                                :alt => '>>',
-                                :size => "32x32"), 
-              :action => 'read', 
-              :volume => @volume,
-              :number => @number.to_i+1,
-              :keywords => @keywords,
-              :language => @language if !@max_number.nil? and @number.to_i < @max_number %>
-        </div>
+      <div class="back_button">
+        <%= link_to image_tag('left.png', :alt => '<<', :size => "32x32"), 
+          '#', 'ng-click' => "back();" %>
+      </div>
+      <div class="next_button">
+        <%= link_to image_tag('right.png', :alt => '>>', :size => "32x32"), 
+          '#', 'ng-click' => "next();" %>
+      </div>
     </td>
     <% if @number.to_i != 0 %>
     <td style="vertical-align:top">

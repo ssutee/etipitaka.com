@@ -2,13 +2,61 @@
   <%= render 'layouts/stylesheets' %>
   <%= javascript_include_tag 'jquery-1.8.2.min.js' %>
   <%= javascript_include_tag 'jquery-ui-1.8.12.custom.min.js' %>  
-  <%= javascript_include_tag 'bootstrap.min.js' %>  
+  <%= javascript_include_tag 'bootstrap.min.js' %>    
   <%= stylesheet_link_tag 'Aristo/jquery-ui-1.8.7.custom.css', :media => 'screen' %>
   <%= stylesheet_link_tag 'bootstrap.min.css', :media => 'screen' %>
   <%= stylesheet_link_tag 'bootstrap-responsive.min.css', :media => 'screen' %>
   <link rel="image_src" href="/logo_64.ico" />
+  <script type="text/javascript">
   
+    $.fn.highlight = function(what,spanClass) {
+      return this.each(function(){        
+        var container = this,
+            content = container.innerHTML,
+            pattern = new RegExp('(>[^<.]*)(' + what + ')([^<.]*)','g'),
+            replaceWith = '$1<span ' + ( spanClass ? 'class="' + spanClass + '"' : '' ) + '">$2</span>$3',
+            highlighted = content.replace(pattern,replaceWith);
+        container.innerHTML = highlighted;
+      });
+    }
+    
+    function PageCtrl($scope) {
+      $scope.cur = <%= Integer(@number)-1 %>;
+      $scope.all_pages = <%= raw @all_pages.to_json %>;
+      $scope.max_number = <%= @max_number %>;
+      <% if !@keywords.nil? %>
+        $scope.keywords = <%= raw @keywords.split.each { |keyword| keyword.gsub('+',' ') } %>;
+      <% end %>
+
+      $scope.set_content = function () {
+        var content = $scope.all_pages[$scope.cur];
+        if (!$scope.keywords) {
+          $scope.content = content;
+        } else {
+          var pattern = new RegExp('(' + $scope.keywords.join('|') + ')','g'),
+              replaceWith = '<span ' + ( 'class="' + 'highlight_excerpt' + '"' ) + '">$1</span>',
+              highlighted = content.replace(pattern, replaceWith);           
+          $scope.content = highlighted;
+        }
+      }
+
+      $scope.set_content();
+
+      $scope.next = function() {
+        $scope.cur = ($scope.cur < $scope.max_number) ? $scope.cur + 1 : $scope.cur;
+        $scope.set_content();        
+      }
+
+      $scope.back = function() {
+        $scope.cur = ($scope.cur > 0) ? $scope.cur -1 : $scope.cur;        
+        $scope.set_content();        
+      }
+    }
+  </script>
 <% end %>
+
+<div ng-controller="PageCtrl">
+
 <div class="toolbar">
   <%= render :partial => 'toolbar' %>
 </div>
@@ -27,6 +75,7 @@
       <h2 class="book_title">
         <%= @title2 %>
       </h2>
+    <!-- 
       <div class="position">
         <span class="page_info"> <%= @page_number_info %> </span>
         <span class="item_info"> <%= @item_number_info %> </span>
@@ -35,5 +84,13 @@
     <div id="rightSplitterContainer">
       <%= render :partial => 'content', :locals => { :content => @content } %>
     </div>    
+    -->
+    
+    <div id="rightSplitterContainer">
+      <%= render :partial => 'content', :locals => { :content => @content } %>
+    </div>    
+    
   </div>
+</div>
+
 </div>

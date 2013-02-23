@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="ngSanitize">
 <head>
   <title> <%= title %></title>
   <script type="text/javascript">
@@ -13,8 +13,10 @@
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
   </script>
+  <%= javascript_include_tag 'angular.min.js' %>
+  <%= javascript_include_tag 'angular-sanitize.min.js' %>
   <%= yield :head %>
-  <link rel="shortcut icon" type="image/x-icon"  href="/favicon.ico" />
+  <link rel="shortcut icon" type="image/x-icon"  href="/favicon.ico" />  
   <%= csrf_meta_tag %>
 </head>
 <body>

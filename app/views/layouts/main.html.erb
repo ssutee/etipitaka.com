@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app>
 <head>
   <title> <%= title %></title>
   <script type="text/javascript">
@@ -17,6 +17,7 @@
   <%= stylesheet_link_tag 'home', :media => 'screen' %>
   <%= javascript_include_tag 'jquery-1.5.1.min' %>
   <%= javascript_include_tag 'jquery_ujs' %>
+  <%= javascript_include_tag 'angular.min.js' %>
   <%= csrf_meta_tag %>
 </head>
 <body>

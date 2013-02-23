@@ -1,7 +1,3 @@
-<p class="content">
-<% if !content.nil? and !@keywords.nil? %>
-<%=highlight(content, @keywords.split.each { |keyword| keyword.gsub('+',' ') })%>
-<% elsif !content.nil? and @keywords.nil? %>
-<%= content %>
-<% end %>
+<p ng-bind-html="content" class="content">
+  {{ content }}
 </p>
