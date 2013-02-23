@@ -1,13 +1,13 @@
 <% content_for :head do %>
   <%= render 'layouts/stylesheets' %>
-  <%= javascript_include_tag 'jquery-1.4.3.min' %>
-  <%= javascript_include_tag 'splitter' %>
-  <%= javascript_include_tag 'splitter_config_for_compare' %>
-  <%= stylesheet_link_tag 'splitter_for_compare', :media => 'screen' %>
+  <%= javascript_include_tag 'jquery-1.8.2.min.js' %>
+  <%= javascript_include_tag 'bootstrap.min.js' %>
+  <%= stylesheet_link_tag 'bootstrap.min.css', :media => 'screen' %>
+  <%= stylesheet_link_tag 'bootstrap-responsive.min.css', :media => 'screen' %>  
 <% end %>
 
-<div id="splitterContainer">
-  <div id="leftPane">
+<div id="splitterContainer" class="row-fluid" style="height:100%">
+  <div id="leftPane" class="span6" style="height:100%; border-right:thin solid #333333;">
     <div class="left_title">
       <h2 class="book_title">
         <%= @titles1[0] %>
@@ -16,33 +16,34 @@
         <%= @titles2[0] %>
       </h2>
     </div>
-    <div class="position">
-      <span class="page_info">
-        <%= @page_number_info[0] %>
-      </span>
-      <span class="item_info">
-        <%= @item_number_info[0] %>
-      </span>
-    </div>
-    <div class="turn_page_bar">
-      <%= render :partial => 'turn_page_bar', 
-                 :locals => { :languages => @languages, 
-                              :target => 0,
-                              :pages => @pages,
-                              :volume => @volume } %>
-    </div>
+    <table style="margin-bottom:0px;">
+      <tr>
+        <td width="33%">
+          <span class="page_info">
+            <%= @page_number_info[0] %>
+          </span>          
+        </td>
+        <td width="34%">
+          <div class="turn_page_bar">
+            <%= render :partial => 'turn_page_bar', 
+                       :locals => { :languages => @languages, 
+                                    :target => 0,
+                                    :pages => @pages,
+                                    :volume => @volume } %>
+          </div>          
+        </td>
+        <td width="33%">
+          <span class="item_info">
+            <%= @item_number_info[0] %>
+          </span>
+        </td>                
+      </tr>
+    </table>    
     <div class="content">
       <%= render :partial => 'content', :locals => { :content => @contents[0] } %>
     </div>
-    <div class="turn_page_bar">
-      <%= render :partial => 'turn_page_bar', 
-                 :locals => { :languages => @languages, 
-                              :target => 0,
-                              :pages => @pages,
-                              :volume => @volume } %>
-    </div>
   </div>
-  <div id="rightPane">
+  <div id="rightPane" class="span6" style="height:100%;">
     <div class="right_title">
       <h2 class="book_title">
         <%= @titles1[1] %>
@@ -51,30 +52,31 @@
         <%= @titles2[1] %>
       </h2>
     </div>
-    <div class="position">
-      <span class="page_info">
-        <%= @page_number_info[1] %>
-      </span>
-      <span class="item_info">
-        <%= @item_number_info[1] %>
-      </span>
-    </div>
-    <div class="turn_page_bar">
-      <%= render :partial => 'turn_page_bar', 
-                 :locals => { :languages => @languages, 
-                              :target => 1,
-                              :pages => @pages,
-                              :volume => @volume } %>
-    </div>
+    <table style="margin-bottom:0px;">
+      <tr>
+        <td width="33%">
+          <span class="page_info">
+            <%= @page_number_info[1] %>
+          </span>          
+        </td>
+        <td width="34%">
+          <div class="turn_page_bar">
+            <%= render :partial => 'turn_page_bar', 
+                       :locals => { :languages => @languages, 
+                                    :target => 1,
+                                    :pages => @pages,
+                                    :volume => @volume } %>
+          </div>          
+        </td>
+        <td width="33%">
+          <span class="item_info">
+            <%= @item_number_info[1] %>
+          </span>
+        </td>                
+      </tr>
+    </table>
     <div class="content">
       <%= render :partial => 'content', :locals => { :content => @contents[1] } %>
-    </div>
-    <div class="turn_page_bar">
-      <%= render :partial => 'turn_page_bar', 
-                 :locals => { :languages => @languages, 
-                              :target => 1,
-                              :pages => @pages,
-                              :volume => @volume } %>
     </div>
   </div>
 </div>

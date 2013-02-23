@@ -1,15 +1,16 @@
 <%= form_for :compare, :url => { :action => 'compare'}, 
-             :html => { :method => :get, :target => '_blank' } do |f| %>
+             :html => { :class => 'form-inline read-nav-form', 
+               :method => :get, :target => '_blank' } do |f| %>
 
   <%= f.hidden_field :lang1 , :value => lang1, :name => 'lang1' %>
   <%= f.hidden_field :volume , :value => volume, :name => 'volume' %>
   <%= f.hidden_field :p1 , :value => p1, :name => 'p1' %>
 
   <span class="field">
-    <%= f.select :lang2, [['บาลี (บาลีสยามรัฐ)','pali']], {}, 
-                 { :name => 'lang2' } if lang1 == 'thai' %>
-    <%= f.select :lang2, [['ไทย (บาลีสยามรัฐ)','thai']], {},
-                 { :name => 'lang2' } if lang1 == 'pali' %>
+    <%= f.select :lang2, 
+      [['บาลี (สยามรัฐ)','pali']], {}, { :class => 'input-medium', :name => 'lang2' } if lang1 == 'thai' %>
+    <%= f.select :lang2, 
+      [['ไทย (ฉบับหลวง)','thai']], {}, { :class => 'input-medium', :name => 'lang2' } if lang1 == 'pali' %>
   </span>
 
   <span class="actions">

@@ -1,11 +1,9 @@
 <% if !@books.nil? %>
   <% @books.each do |book| %>
-    <li class="book" <%="style=background:#ccc" if book.volume.to_i == @volume.to_i%>>
-      <pre class="book_title"><%= link_to(' '+i_to_thai(book.volume)+'.'+book.title.strip,
-                                          read_path(:language => book.language,
-                                                    :volume => book.volume,
-                                                    :number => 0),
-                                          :class => 'book_title') %></pre>
+    <li <%="class=active" if book.volume.to_i == @volume.to_i%>>
+      <%= link_to(' '+i_to_thai(book.volume)+'.'+book.title.strip,
+        read_path(:language => book.language,
+        :volume => book.volume, :number => 0)) %>
     </li>
   <% end %>
 <% end %>

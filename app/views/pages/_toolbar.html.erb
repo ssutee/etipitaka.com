@@ -4,22 +4,31 @@
   });
 </script>
 
-<table class="toolbar">
+<table class="toolbar table-bordered" style="width: auto;" >
+  <thead>
+    <tr>
+      <th>เลือกอ่านที่</th>    
+      <th>อ่านทีละหน้า</th>
+      <% if @number.to_i != 0 %>
+        <th>เทียบเคียงกับ</th>
+      <% end %>
+      <% if signed_in? %>
+        <th>รายการจดจำ</th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
   <tr>
-    <td style="width: 260px;">
-      <fieldset class="tool">
-        <legend>เลือกอ่านที่</legend> 
-          <div style="float:left;padding-left:3px;">
-            <%= render 'goto_page_form' %>
-          </div>
-          <div style="float:right;padding-right:3px;">
-            <%= render 'goto_item_form' %>
-          </div>
-      </fieldset>
+    <td style="vertical-align:top">
+      <div style="display:inline-block;padding-left:3px;">
+        <%= render 'goto_page_form' %>
+      </div>
+      <div style="display:inline-block;padding-right:3px;">
+        <%= render 'goto_item_form' %>
+      </div>
     </td>
-    <td style="width: 100px;">
-      <fieldset class="tool">
-        <legend>อ่านทีละหน้า</legend> 
+    <td style="vertical-align:top">
+        <% if @number.to_i > 1 %>
         <div class="back_button">
           <%= link_to image_tag('left.png', 
                                 :alt => '<<', 
@@ -28,8 +37,9 @@
                       :volume => @volume,
                       :number => @number.to_i-1,
                       :keywords => @keywords,
-                      :language => @language if @number.to_i > 1 %>
+                      :language => @language %>
         </div>
+        <% end %>
         <div class="next_button">
           <%= link_to image_tag('right.png', 
                                 :alt => '>>',
@@ -40,34 +50,27 @@
               :keywords => @keywords,
               :language => @language if !@max_number.nil? and @number.to_i < @max_number %>
         </div>
-      </fieldset>
     </td>
     <% if @number.to_i != 0 %>
-    <td style="width:200px;">
-      <fieldset class="tool">
-        <legend>เทียบเคียงกับ</legend> 
+    <td style="vertical-align:top">
         <div class="compare_form">
           <%= render :partial => 'compare_form', :locals => { :lang1 => @language,
                                                   :volume => @volume,
                                                   :p1 => @number } %>
         </div>
-      </fieldset>
     </td>
     <% end %>
     <% if signed_in? %>
-    <td style="width:130px;">
-      <fieldset class="tool">
-        <legend>รายการจดจำ</legend>
+    <td style="vertical-align:top">
         <div class="bookmark">
           <%= link_to 'เรียกดู', bookmarks_path %>
           <%= link_to 'เพิ่ม' , '#', 
                 :onclick => 'return $("#bookmark_adding_dialog").dialog("open");' if @number.to_i > 0 %>
         </div>
-      </fieldset>
     </td>
     <% end %>
-    <td>&nbsp;</td>
   </tr>
+  </tbody>
 </table>
 
 <% if signed_in? and @number.to_i > 0 %>
@@ -85,13 +88,13 @@
            items = page.items.map { |item| item.number } 
            items = items.uniq.map { |item| [i_to_thai(item), item] }
         %>
-        <%= f.select :item_number, items %>
+        <%= f.select :item_number, items, {}, {:class => 'input-tiny'} %>
       </span>
       <%= f.hidden_field :refer, :name => :refer, :value => request.request_uri.to_s %>
       <%= f.hidden_field :page_id, :value => page.id %>
     </div>
     <div class="field">
-      <%= f.text_area :note %>
+      <%= f.text_area :note, :cols => '150' %>
     </div>
     <div class="actions">
       <%= f.submit "เพิ่ม" %>

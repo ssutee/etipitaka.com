@@ -14,13 +14,13 @@
     </span>
     <span class="field">
       <%= f.select :language, 
-                   [['ภาษาไทยฉบับหลวง (ไทยสยามรัฐ)','thai'],['ภาษาบาลีฉบับสยามรัฐ  (บาลีสยามรัฐ)','pali']],
+                   [['ภาษาไทย ฉบับหลวง','thai'],['ภาษาบาลี ฉบับสยามรัฐ','pali']],
                    {:selected => @language} %>
     </span>
     <span class="field">
       <%= f.search_field :keywords %>
     </span>
-    <span class="actions">
+    <span class="actions" style="margin-left:20px;">
       <%= f.submit "ค้นหา" %>
     </span>
   <% end %>

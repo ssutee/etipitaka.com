@@ -1,9 +1,7 @@
-<%= form_for(:read) do |f| %>
+<%= form_for(:read, :html => {:class => "form-inline read-nav-form"}) do |f| %>
   <span class="field">
     <%= f.label :item_number, 'ข้อ' %>
-    <%= f.text_field :item_number , { :size => 3 }%>
-  </span>
-  <span class="actions">
+    <%= f.text_field :item_number , {:class => "input-tiny"}%>
     <%= f.submit '►' %>
   </span>
 <% end %>

@@ -101,9 +101,9 @@ class PagesController < ApplicationController
     if !language.nil? and !volume.nil?
       @volume = volume
       if language == 'thai'
-        tmp = 'ฉบับบาลีสยามรัฐ (ภาษาไทย)'
+        tmp = 'ภาษาไทย (ฉบับหลวง)'
       elsif language == 'pali'
-        tmp = 'ฉบับบาลีสยามรัฐ (ภาษาบาลี)'
+        tmp = 'ภาษาบาลี (ฉบับสยามรัฐ)'
       end
       @title1 = "พระไตรปิฎก #{tmp} เล่มที่ #{i_to_thai(volume)}"
       @title2 = Book.where(:language => language, :volume => volume).first.title
@@ -139,9 +139,9 @@ class PagesController < ApplicationController
     i = 0
     for lang in @languages
       if lang == 'thai'
-        tmp = 'ฉบับบาลีสยามรัฐ (ภาษาไทย)'
+        tmp = 'ภาษาไทย (ฉบับหลวง)'
       elsif lang == 'pali'
-        tmp = 'ฉบับบาลีสยามรัฐ (ภาษาบาลี)'
+        tmp = 'ภาษาบาลี (ฉบับสยามรัฐ)'
       end
       @titles1 << "พระไตรปิฎก #{tmp} เล่มที่ #{i_to_thai(@volume)}"
       @titles2 << Book.where(:language => lang, :volume => @volume).first.title

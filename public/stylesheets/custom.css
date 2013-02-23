@@ -3,6 +3,11 @@
   padding: 0;
 }
 
+body,html
+{
+   height:100%;   
+}
+
 .container {
   width: 1000px;
 }
@@ -104,33 +109,19 @@ pre.book_title {
   margin-bottom: 20px;
 }
 
-pre.content {
-  font-size: 145%;
+p.content {
+  font-size: 150%;
   padding-left: 0.5em;
   padding-right: 0.5em;
+  line-height: 150%;
   padding-bottom: 0;
   margin-bottom: 0;
   padding-top: 0;
   margin-top: 0;
   white-space: pre-wrap; /* css-3 */
   white-space: -moz-pre-wrap !important; /* Mozilla, since 1999 */
-  word-wrap: break-word; /* Internet Explorer 5.5+ */
+  word-wrap: break-word; /* Internet Explorer 5.5+ */  
 }
-
-ul.books {
-  list-style-type: none;
-  margin: auto;
-  padding-left: 0;
-  margin-left: 0;
-}
-
-li.book {
-  font-size: 100%;
-  margin: auto;
-  margin-bottom: -1.1em;
-  margin-top: -1.1em;
-}
-
 
 div.toolbar {
   /* min-height: 75px; */ */
@@ -163,23 +154,18 @@ div.goto_item {
 }
 
 div.back_button {
-  text-align: right; 
-  margin-top: 2px;
-  float: left;
+  display: inline-block;
   width: 3em;
   height: 2em;
 }
 
 div.next_button {
-  text-align: left; 
-  margin-top: 2px;
-  float: right;
+  display: inline-block;
   width: 3em;
   height: 2em;
 }
 
 div.compare_form {
-  text-align: center;
 }
 
 h2.book_title {
@@ -192,7 +178,7 @@ h2.book_title {
 span.page_info {
   text-align: left;
   float: left;
-  margin-left: 2em;
+  margin-left: 1em;
   font-size: 140%;
   color: green;
 }
@@ -200,7 +186,7 @@ span.page_info {
 span.item_info {
   float: right;
   text-align: right;
-  margin-right: 2em;
+  margin-right: 1em;
   font-size: 140%;
   color: green;
 }
@@ -322,7 +308,6 @@ ul.usernav li a {
 
 div.header {
   /* height: 45px; */
-  height: 8%;
   min-height: 45px; */
   width: 95%;
   display: block;
@@ -352,7 +337,6 @@ legend {
 
 div.bookmark {
   margin-top: 5px;
-  text-align: center;
 }
 
 div.bookmark a {
@@ -484,4 +468,10 @@ table.bookmarks tr td.bookmark span.timestamp {
   color: #666;
 }
 
+.input-tiny {
+  width:45px;
+}
 
+.read-nav-form {
+  margin-bottom:0px !important;
+}

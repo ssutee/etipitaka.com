@@ -1,23 +1,25 @@
 <% content_for :head do %>
   <%= render 'layouts/stylesheets' %>
-  <%= javascript_include_tag 'jquery-1.5.1.min' %>
-  <%= javascript_include_tag 'splitter' %>
-  <%= javascript_include_tag 'splitter_config_for_read' %>
-  <%= javascript_include_tag 'jquery-ui-1.8.12.custom.min.js' %>
-  <%= stylesheet_link_tag 'splitter_for_read', :media => 'screen' %>
+  <%= javascript_include_tag 'jquery-1.8.2.min.js' %>
+  <%= javascript_include_tag 'jquery-ui-1.8.12.custom.min.js' %>  
+  <%= javascript_include_tag 'bootstrap.min.js' %>  
   <%= stylesheet_link_tag 'Aristo/jquery-ui-1.8.7.custom.css', :media => 'screen' %>
+  <%= stylesheet_link_tag 'bootstrap.min.css', :media => 'screen' %>
+  <%= stylesheet_link_tag 'bootstrap-responsive.min.css', :media => 'screen' %>
   <link rel="image_src" href="/logo_64.ico" />
+  
 <% end %>
 <div class="toolbar">
   <%= render :partial => 'toolbar' %>
 </div>
-<div id="splitterContainer">
-  <div id="leftPane">
-    <ul class="books">
+
+<div class="row-fluid" style="height:100%">
+  <div class="span3" style="overflow-y: scroll; height:100%">
+    <ul class="nav nav-pills nav-stacked">
       <%= render 'book' %>
     </ul>
   </div>
-  <div id="rightPane">
+  <div class="span9" style="height:100%">
     <div id="rightPaneHeader">
       <h2 class="book_title">
         <%= @title1 %>
@@ -30,12 +32,8 @@
         <span class="item_info"> <%= @item_number_info %> </span>
       </div>
     </div>
-    <div id="rightSplitterContainer" style="height:85%">
-      <div id="rightTopPane">
-        <%= render :partial => 'content', :locals => { :content => @content } %>
-      </div>
-      <div id="rightBottomPane">
-      </div>
-    </div>
+    <div id="rightSplitterContainer">
+      <%= render :partial => 'content', :locals => { :content => @content } %>
+    </div>    
   </div>
 </div>
