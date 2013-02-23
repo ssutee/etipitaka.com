@@ -78,29 +78,45 @@ class PagesController < ApplicationController
 
     @language = language
     @volume = volume
-    @max_number = Page.max(language,volume) if !language.nil? and !volume.nil? 
+    @number = number
+
+    @max_number = Rails.cache.fetch("/#{language}/#{volume}/max_page") {
+      Page.max(language,volume)
+    } if !language.nil? and !volume.nil?
 
     @books = Book.where(:language => language) unless language.nil? 
     @content = Page.content(language, volume, number) unless number.nil?
-    @all_pages = Page.all_pages(language, volume).map do |page|
-      page[:content]
+    
+    all_pages = Rails.cache.fetch("/#{language}/#{volume}") do
+      Page.all_pages(language, volume).map do |page|
+        page_number_info = 'หน้าที่ ' + i_to_thai(page.number) unless page.number.to_i == 0
+        page_number_info += '/'+i_to_thai(@max_number) unless page_number_info.nil?      
+        item_number_info = ''
+        item_number_info += 'ข้อที่ ' + i_to_thai(page.items.first.number) unless page.number.to_i == 0
+        if page.number.to_i != 0 and page.items.count > 1
+          item_number_info += '-' + i_to_thai(page.items.last.number)
+        end      
+        [page.content, page_number_info, item_number_info, i_to_thai(page.number), page.id, page.items.first.number]
+      end      
     end
-
-    @number = 0
-
-    if (number.to_i == 0 or @content.nil?) and (items.nil? or items.empty?)
-      @content = "พระไตรปิฎกเล่มที่ #{i_to_thai(volume)} มีทั้งหมด\n"
-      @content += "    #{i_to_thai(Page.max(language,volume))} หน้า"
-      @content += " #{i_to_thai(Item.max(language,volume))} ข้อ\n"
-    elsif !items.nil? and !items.empty? and @content.nil?
-      @content = "พบข้อที่ #{i_to_thai(items.first.number)}"
-      @content += " ทั้งหมด #{i_to_thai(items.count)} แห่ง\n"
-      @items = items
-      @content += render_to_string :partial => "pages/link_to_pages" 
+    
+    first_page = nil
+    if items.nil? or items.empty?
+      first_page = "พระไตรปิฎกเล่มที่ #{i_to_thai(volume)} มีทั้งหมด\n"
+      first_page += "    #{i_to_thai(@max_number)} หน้า"
+      first_page += " #{i_to_thai(Rails.cache.fetch("/#{language}/#{volume}/max_item"){Item.max(language,volume)})} ข้อ\n"    
     else
-      @number = number
-      @keywords = params[:keywords]
+      first_page = "พบข้อที่ #{i_to_thai(items.first.number)}"
+      first_page += " ทั้งหมด #{i_to_thai(items.count)} แห่ง\n"
+      @items = items
+      first_page += render_to_string :partial => "pages/link_to_pages" 
     end
+    
+    @all_pages = []
+    @all_pages.insert(0, [first_page, '', '', '', 0, 0]) unless first_page.nil?
+    @all_pages.concat(all_pages)
+    
+    @keywords = params[:keywords]
 
     if !language.nil? and !volume.nil?
       @volume = volume
@@ -111,14 +127,7 @@ class PagesController < ApplicationController
       end
       @title1 = "พระไตรปิฎก #{tmp} เล่มที่ #{i_to_thai(volume)}"
       @title2 = Book.where(:language => language, :volume => volume).first.title
-      p = Page.where(:language => language, :volume => volume, :number => number).first
-      number = 0 if p.nil?
-      @page_number_info = 'หน้าที่ ' + i_to_thai(number) unless number.to_i == 0
-      @page_number_info += '/'+i_to_thai(@max_number) unless @page_number_info.nil?
-      @item_number_info = 'ข้อที่ ' + i_to_thai(p.items.first.number) unless number.to_i == 0
-      if number.to_i != 0 and p.items.count > 1
-        @item_number_info += '-' + i_to_thai(p.items.last.number)
-      end
+      
     end
 
     if signed_in?

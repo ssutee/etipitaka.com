@@ -3,7 +3,7 @@
     <li <%="class=active" if book.volume.to_i == @volume.to_i%>>
       <%= link_to(' '+i_to_thai(book.volume)+'.'+book.title.strip,
         read_path(:language => book.language,
-        :volume => book.volume, :number => 0)) %>
+        :volume => book.volume, :number => 0), :style => "line-height:120% !important;") %>
     </li>
   <% end %>
 <% end %>

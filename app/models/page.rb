@@ -31,7 +31,7 @@ class Page < ActiveRecord::Base
   end
 
   def self.all_pages(language, volume)
-    select("content").where("language = ? AND volume = ?",language, volume)
+    where("language = ? AND volume = ?",language, volume)
   end
 
   def self.content(language, volume, number)

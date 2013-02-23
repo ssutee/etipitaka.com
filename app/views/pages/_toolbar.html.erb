@@ -9,9 +9,7 @@
     <tr>
       <th>เลือกอ่านที่</th>    
       <th>อ่านทีละหน้า</th>
-      <% if @number.to_i != 0 %>
-        <th>เทียบเคียงกับ</th>
-      <% end %>
+      <th style="display:{{show_if_not_zero}};">เทียบเคียงกับ</th>
       <% if signed_in? %>
         <th>รายการจดจำ</th>
       <% end %>
@@ -37,21 +35,23 @@
           '#', 'ng-click' => "next();" %>
       </div>
     </td>
-    <% if @number.to_i != 0 %>
-    <td style="vertical-align:top">
+
+    <td style="vertical-align:top;display:{{show_if_not_zero}};">
         <div class="compare_form">
           <%= render :partial => 'compare_form', :locals => { :lang1 => @language,
                                                   :volume => @volume,
                                                   :p1 => @number } %>
         </div>
     </td>
-    <% end %>
+
     <% if signed_in? %>
     <td style="vertical-align:top">
         <div class="bookmark">
           <%= link_to 'เรียกดู', bookmarks_path %>
-          <%= link_to 'เพิ่ม' , '#', 
-                :onclick => 'return $("#bookmark_adding_dialog").dialog("open");' if @number.to_i > 0 %>
+          <span style="display:{{show_inline_if_not_zero}};">
+            <%= link_to 'เพิ่ม' , '#',
+                  :onclick => 'return $("#bookmark_adding_dialog").dialog("open");'%>
+          </span>
         </div>
     </td>
     <% end %>
@@ -59,7 +59,7 @@
   </tbody>
 </table>
 
-<% if signed_in? and @number.to_i > 0 %>
+<% if signed_in? %>
 <div id="bookmark_adding_dialog" title="เพิ่มรายการจดจำ">
   <div style="text-align:center">
     <%= readable_language(@language) %>
@@ -67,17 +67,10 @@
   <%= form_for @bookmark do |f| %>
     <div style="text-align:center">
       <span>เล่มที่</span> <span><%= i_to_thai @volume %></span> 
-      <span>หน้าที่</span> <span><%= i_to_thai @number %></span>
-      <span>ข้อที่</span>
-      <span>
-        <% page = Page.find_by_language_and_volume_and_number(@language,@volume,@number) 
-           items = page.items.map { |item| item.number } 
-           items = items.uniq.map { |item| [i_to_thai(item), item] }
-        %>
-        <%= f.select :item_number, items, {}, {:class => 'input-tiny'} %>
-      </span>
-      <%= f.hidden_field :refer, :name => :refer, :value => request.request_uri.to_s %>
-      <%= f.hidden_field :page_id, :value => page.id %>
+      <span>หน้าที่</span> <span>{{page_number_thai}}</span>
+      <input id="bookmark_refer" name="refer" type="hidden" value="/read?language=<%= @language %>&amp;number={{cur}}&amp;volume=<%= @volume %>">
+      <input id="bookmark_page_id" name="bookmark[page_id]" type="hidden" value="{{page_id}}">
+      <input id="bookmark_item_number" name="bookmark[item_number]" type="hidden" value="{{item_number}}">
     </div>
     <div class="field">
       <%= f.text_area :note, :cols => '150' %>

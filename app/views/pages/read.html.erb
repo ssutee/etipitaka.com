@@ -21,15 +21,19 @@
     }
     
     function PageCtrl($scope) {
-      $scope.cur = <%= Integer(@number)-1 %>;
+      $scope.cur = <%= Integer(@number) %>;
+      
+      <% cache(:action => 'read', :action_suffix => "all_pages_#{@volume}") do %>
       $scope.all_pages = <%= raw @all_pages.to_json %>;
+      <% end %>
+      
       $scope.max_number = <%= @max_number %>;
       <% if !@keywords.nil? %>
         $scope.keywords = <%= raw @keywords.split.each { |keyword| keyword.gsub('+',' ') } %>;
       <% end %>
 
       $scope.set_content = function () {
-        var content = $scope.all_pages[$scope.cur];
+        var content = $scope.all_pages[$scope.cur][0];
         if (!$scope.keywords) {
           $scope.content = content;
         } else {
@@ -38,6 +42,14 @@
               highlighted = content.replace(pattern, replaceWith);           
           $scope.content = highlighted;
         }
+        $scope.page_number_info = $scope.all_pages[$scope.cur][1];
+        $scope.item_number_info = $scope.all_pages[$scope.cur][2];
+        $scope.page_number_thai = $scope.all_pages[$scope.cur][3];
+        $scope.page_id = $scope.all_pages[$scope.cur][4];
+        $scope.item_number = $scope.all_pages[$scope.cur][5];
+        
+        $scope.show_if_not_zero = $scope.cur > 0 ? 'block' : 'none';
+        $scope.show_inline_if_not_zero = $scope.cur > 0 ? 'inline-block' : 'none';
       }
 
       $scope.set_content();
@@ -48,14 +60,19 @@
       }
 
       $scope.back = function() {
-        $scope.cur = ($scope.cur > 0) ? $scope.cur -1 : $scope.cur;        
+        $scope.cur = ($scope.cur > 1) ? $scope.cur -1 : $scope.cur;        
         $scope.set_content();        
       }
+      
+      $scope.$watch('page_number', function(value) {
+        $scope.cur = !parseInt(value) || parseInt(value) > $scope.max_number ? $scope.cur : parseInt(value);
+        $scope.set_content(); 
+      });
     }
   </script>
 <% end %>
 
-<div ng-controller="PageCtrl">
+<div ng-controller="PageCtrl" style="height:100%">
 
 <div class="toolbar">
   <%= render :partial => 'toolbar' %>
@@ -63,7 +80,7 @@
 
 <div class="row-fluid" style="height:100%">
   <div class="span3" style="overflow-y: scroll; height:100%">
-    <ul class="nav nav-pills nav-stacked">
+    <ul class="nav nav-pills nav-stacked" style="font-size: 120%;">
       <%= render 'book' %>
     </ul>
   </div>
@@ -75,16 +92,12 @@
       <h2 class="book_title">
         <%= @title2 %>
       </h2>
-    <!-- 
+
       <div class="position">
-        <span class="page_info"> <%= @page_number_info %> </span>
-        <span class="item_info"> <%= @item_number_info %> </span>
+        <span class="page_info"> {{page_number_info}} </span>
+        <span class="item_info"> {{item_number_info}} </span>
       </div>
     </div>
-    <div id="rightSplitterContainer">
-      <%= render :partial => 'content', :locals => { :content => @content } %>
-    </div>    
-    -->
     
     <div id="rightSplitterContainer">
       <%= render :partial => 'content', :locals => { :content => @content } %>

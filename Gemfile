@@ -11,6 +11,7 @@ gem 'twitter', :git => 'https://github.com/sferik/twitter', :tag => 'v2.2.1'
 gem 'fb_graph'
 gem 'bitly'
 gem 'yaml_db'
+gem "rack", "~> 1.2"
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
