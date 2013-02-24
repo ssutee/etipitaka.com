@@ -144,12 +144,13 @@ class PagesController < ApplicationController
     def create_items_map(language, volume)
       Rails.cache.fetch("/#{language}/#{volume}/items_map") do
         items_map = {}
-        Page.all_pages(language, volume).each do |page|
-          item_number = page.items.first.number.to_i
-          if !items_map.has_key?(item_number)
-            items_map[item_number] = [page.number.to_i]
-          elsif
-            items_map[item_number].concat([page.number.to_i])
+        Page.all_pages(language, volume).each do |page|          
+          (page.items.first.number.to_i..page.items.last.number.to_i).each do | item_number |          
+            if !items_map.has_key?(item_number)
+              items_map[item_number] = [page.number.to_i]
+            elsif
+              items_map[item_number].concat([page.number.to_i])
+            end
           end
         end  
         transform_hash(items_map) {|hash, key, value|       
