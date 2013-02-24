@@ -13,6 +13,9 @@
       <% if signed_in? %>
         <th>รายการจดจำ</th>
       <% end %>
+      <% if !@keywords.nil? %>
+        <th>คำค้นหา</th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -44,7 +47,7 @@
     </td>
 
     <% if signed_in? %>
-    <td style="vertical-align:top">
+    <td>
         <div class="bookmark">
           <%= link_to 'เรียกดู', bookmarks_path %>
           <span style="display:{{show_inline_if_not_zero}};">
@@ -54,6 +57,10 @@
         </div>
     </td>
     <% end %>
+    <% if !@keywords.nil? %>
+      <td><b class="text-info"><%= @keywords %></b></td>
+    <% end %>
+    
   </tr>
   </tbody>
 </table>
