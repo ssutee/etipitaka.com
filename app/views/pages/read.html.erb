@@ -22,7 +22,7 @@
       <%= render 'book' %>
     </ul>
   </div>
-  <div class="span9" style="height:100%">
+  <div class="span9" style="height:100%">    
     <div id="rightPaneHeader">
       <h2 class="book_title">
         <%= @title1 %>
@@ -36,7 +36,10 @@
         <span class="item_info"> {{item_number_info}} </span>
       </div>
     </div>
-    
+    <br/>
+    <div style="display:{{show_if_not_zero}};">
+      <a href="/read?language=<%= @language %>&amp;number={{cur}}&amp;volume=<%= @volume %>">ลิงก์สำหรับแบ่งปันหน้านี้</a>
+    </div>
     <div id="rightSplitterContainer">
       <p ng-bind-html="content" class="content">{{ content }}</p>
     </div>    
