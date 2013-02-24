@@ -4,79 +4,72 @@
   <%= javascript_include_tag 'bootstrap.min.js' %>
   <%= stylesheet_link_tag 'bootstrap.min.css', :media => 'screen' %>
   <%= stylesheet_link_tag 'bootstrap-responsive.min.css', :media => 'screen' %>  
+  <%= render :partial => 'compare_script' %>
 <% end %>
 
-<div id="splitterContainer" class="row-fluid" style="height:100%">
+<div ng-controller="PageCtrl" id="splitterContainer" class="row-fluid" style="height:100%">
   <div id="leftPane" class="span6" style="height:100%; border-right:thin solid #333333;">
     <div class="left_title">
       <h2 class="book_title">
-        <%= @titles1[0] %>
+        <%= @titles[0][0] %>
       </h2>
       <h2 class="book_title">
-        <%= @titles2[0] %>
+        <%= @titles[0][1] %>
       </h2>
     </div>
     <table style="margin-bottom:0px;">
       <tr>
         <td width="33%">
           <span class="page_info">
-            <%= @page_number_info[0] %>
+            {{page_number_infos[0]}}
           </span>          
         </td>
         <td width="34%">
           <div class="turn_page_bar">
-            <%= render :partial => 'turn_page_bar', 
-                       :locals => { :languages => @languages, 
-                                    :target => 0,
-                                    :pages => @pages,
-                                    :volume => @volume } %>
+            <%= render :partial => 'turn_page_bar', :locals => {:target => 0} %>
           </div>          
         </td>
         <td width="33%">
           <span class="item_info">
-            <%= @item_number_info[0] %>
+            {{item_number_infos[0]}}
           </span>
         </td>                
       </tr>
     </table>    
     <div class="content">
-      <%= render :partial => 'content', :locals => { :content => @contents[0] } %>
+      <p ng-bind-html="left_content" class="content">{{ left_content }}</p>
     </div>
   </div>
   <div id="rightPane" class="span6" style="height:100%;">
     <div class="right_title">
       <h2 class="book_title">
-        <%= @titles1[1] %>
+        <%= @titles[1][0] %>
       </h2>
       <h2 class="book_title">
-        <%= @titles2[1] %>
+        <%= @titles[1][1] %>
       </h2>
     </div>
     <table style="margin-bottom:0px;">
       <tr>
         <td width="33%">
           <span class="page_info">
-            <%= @page_number_info[1] %>
+            {{page_number_infos[1]}}
           </span>          
         </td>
         <td width="34%">
           <div class="turn_page_bar">
-            <%= render :partial => 'turn_page_bar', 
-                       :locals => { :languages => @languages, 
-                                    :target => 1,
-                                    :pages => @pages,
-                                    :volume => @volume } %>
+            <%= render :partial => 'turn_page_bar', :locals => {:target => 1} %>
           </div>          
         </td>
         <td width="33%">
           <span class="item_info">
-            <%= @item_number_info[1] %>
+            {{item_number_infos[1]}}
           </span>
         </td>                
       </tr>
     </table>
     <div class="content">
-      <%= render :partial => 'content', :locals => { :content => @contents[1] } %>
+      <p ng-bind-html="right_content" class="content">{{ right_content }}</p>
     </div>
   </div>
 </div>

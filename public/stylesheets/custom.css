@@ -124,12 +124,6 @@ p.content {
   word-wrap: break-word; /* Internet Explorer 5.5+ */  
 }
 
-div.toolbar {
-  /* min-height: 75px; */ */
-  height: 12%;
-  /* position: relative; */
-}
-
 div.label_for_goto {
   width: 10em;
   left: 5px;
@@ -323,10 +317,8 @@ fieldset.tool {
 
 table.toolbar {
   margin: 0;
-  padding: 0;
-  /* height: 65px; */
-  height: 10%;
-  /* min-height: 65px; */ */
+  padding-left: 10px;
+  margin-bottom: 10px;
 }
 
 legend {

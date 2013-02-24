@@ -4,7 +4,7 @@
 
   <%= f.hidden_field :lang1 , :value => lang1, :name => 'lang1' %>
   <%= f.hidden_field :volume , :value => volume, :name => 'volume' %>
-  <%= f.hidden_field :p1 , :value => p1, :name => 'p1' %>
+  <input id="compare_p1" name="p1" type="hidden" value={{cur}}>
 
   <span class="field">
     <%= f.select :lang2, 

@@ -47,7 +47,7 @@ class PagesController < ApplicationController
     language = params[:language]
     volume = params[:volume]
     number = params[:number]
-
+    
     if !params[:read].nil? and params[:read].has_key?(:page_number)
       language = session[:cur_language]
       volume = session[:cur_volume]
@@ -58,9 +58,7 @@ class PagesController < ApplicationController
       language = session[:cur_language]
       volume = session[:cur_volume]
       items = Item.find_by(language, volume, params[:read][:item_number])
-      if items.count == 1
-        number = items.first.page.number
-      end
+      number = items.first.page.number if items.count == 1
     end
 
     if language.nil? or volume.nil?
@@ -75,60 +73,19 @@ class PagesController < ApplicationController
 
     session[:cur_language] = language
     session[:cur_volume] = volume
-
+    
+    @books = Book.where(:language => language)
     @language = language
     @volume = volume
     @number = number
-
-    @max_number = Rails.cache.fetch("/#{language}/#{volume}/max_page") {
-      Page.max(language,volume)
-    } if !language.nil? and !volume.nil?
-
-    @books = Book.where(:language => language) unless language.nil? 
-    @content = Page.content(language, volume, number) unless number.nil?
-    
-    all_pages = Rails.cache.fetch("/#{language}/#{volume}") do
-      Page.all_pages(language, volume).map do |page|
-        page_number_info = 'หน้าที่ ' + i_to_thai(page.number) unless page.number.to_i == 0
-        page_number_info += '/'+i_to_thai(@max_number) unless page_number_info.nil?      
-        item_number_info = ''
-        item_number_info += 'ข้อที่ ' + i_to_thai(page.items.first.number) unless page.number.to_i == 0
-        if page.number.to_i != 0 and page.items.count > 1
-          item_number_info += '-' + i_to_thai(page.items.last.number)
-        end      
-        [page.content, page_number_info, item_number_info, i_to_thai(page.number), page.id, page.items.first.number]
-      end      
-    end
-    
-    first_page = nil
-    if items.nil? or items.empty?
-      first_page = "พระไตรปิฎกเล่มที่ #{i_to_thai(volume)} มีทั้งหมด\n"
-      first_page += "    #{i_to_thai(@max_number)} หน้า"
-      first_page += " #{i_to_thai(Rails.cache.fetch("/#{language}/#{volume}/max_item"){Item.max(language,volume)})} ข้อ\n"    
-    else
-      first_page = "พบข้อที่ #{i_to_thai(items.first.number)}"
-      first_page += " ทั้งหมด #{i_to_thai(items.count)} แห่ง\n"
-      @items = items
-      first_page += render_to_string :partial => "pages/link_to_pages" 
-    end
-    
-    @all_pages = []
-    @all_pages.insert(0, [first_page, '', '', '', 0, 0]) unless first_page.nil?
-    @all_pages.concat(all_pages)
-    
     @keywords = params[:keywords]
-
-    if !language.nil? and !volume.nil?
-      @volume = volume
-      if language == 'thai'
-        tmp = 'ภาษาไทย (ฉบับหลวง)'
-      elsif language == 'pali'
-        tmp = 'ภาษาบาลี (ฉบับสยามรัฐ)'
-      end
-      @title1 = "พระไตรปิฎก #{tmp} เล่มที่ #{i_to_thai(volume)}"
-      @title2 = Book.where(:language => language, :volume => volume).first.title
-      
-    end
+    
+    @max_number = find_max_page(language, volume)
+    @max_item = find_max_item(language, volume)
+    
+    @all_pages = create_all_pages(language, volume, @max_number, @max_item)    
+    @items_map = create_items_map(language, volume)
+    @title1, @title2 = create_titles(language, volume)
 
     if signed_in?
       @bookmark = Bookmark.new
@@ -147,36 +104,92 @@ class PagesController < ApplicationController
                                       params[:p1])
 
     @pages = [ params[:p1], params[:p2] ]
-    @titles1, @titles2, @contents, @max_numbers = [], [], [], []
-    @page_number_info, @item_number_info = [], []
+    @max_numbers, @max_items = [], []
+    @titles, @all_pages, @items_maps = [], [], []
 
     i = 0
-    for lang in @languages
-      if lang == 'thai'
-        tmp = 'ภาษาไทย (ฉบับหลวง)'
-      elsif lang == 'pali'
-        tmp = 'ภาษาบาลี (ฉบับสยามรัฐ)'
-      end
-      @titles1 << "พระไตรปิฎก #{tmp} เล่มที่ #{i_to_thai(@volume)}"
-      @titles2 << Book.where(:language => lang, :volume => @volume).first.title
-      @contents << Page.content(lang, @volume, @pages[i]) 
-      @max_numbers << Page.max(lang, @volume)  
-      p = Page.where(:language => lang, :volume => @volume, :number => @pages[i]).first
-
-      tmp = 'หน้าที่ ' + i_to_thai(@pages[i]) 
-      tmp += '/'+i_to_thai(@max_numbers[i]) 
-      @page_number_info << tmp
-      
-      tmp = 'ข้อที่ ' + i_to_thai(p.items.first.number) 
-      if p.items.count > 1
-        tmp += '-' + i_to_thai(p.items.last.number)
-      end
-      @item_number_info << tmp
+    for language in @languages      
+      @max_numbers[i] = find_max_page(language, @volume)
+      @max_items[i] = find_max_item(language, @volume)
+      @titles[i] = create_titles(language, @volume)
+      @all_pages[i] = create_all_pages(language, @volume, @max_numbers[i], @max_items[i])
+      @items_maps[i] = create_items_map(language, @volume)      
       i += 1
-    end
+    end    
   end
 
   private
+    def transform_hash(original, options={}, &block)
+      original.inject({}){|result, (key,value)|
+        value = if (options[:deep] && Hash === value) 
+                  transform_hash(value, options, &block)
+                else 
+                  value
+                end
+        block.call(result,key,value)
+        result
+      }
+    end  
+    
+    def create_titles(language, volume)      
+      if language == 'thai'
+        book_title = 'ภาษาไทย (ฉบับหลวง)'
+      elsif language == 'pali'
+        book_title = 'ภาษาบาลี (ฉบับสยามรัฐ)'
+      end
+      ["พระไตรปิฎก #{book_title} เล่มที่ #{i_to_thai(volume)}",
+        Book.where(:language => language, :volume => volume).first.title]
+    end
+  
+    def create_items_map(language, volume)
+      Rails.cache.fetch("/#{language}/#{volume}/items_map") do
+        items_map = {}
+        Page.all_pages(language, volume).each do |page|
+          item_number = page.items.first.number.to_i
+          if !items_map.has_key?(item_number)
+            items_map[item_number] = [page.number.to_i]
+          elsif
+            items_map[item_number].concat([page.number.to_i])
+          end
+        end  
+        transform_hash(items_map) {|hash, key, value|       
+          acc = [value[0]]
+          value.each_cons(2) {|x,y| acc << y if x != y-1}
+          hash[key] = acc
+        }              
+      end
+    end
+
+    def create_all_pages(language, volume, max_page, max_item)
+      pages = Rails.cache.fetch("/#{language}/#{volume}") do
+        Page.all_pages(language, volume).map do |page|
+          page_number_info = 'หน้าที่ ' + i_to_thai(page.number) unless page.number.to_i == 0
+          page_number_info += '/'+i_to_thai(max_page) unless page_number_info.nil?      
+          item_number_info = ''
+          item_number_info += 'ข้อที่ ' + i_to_thai(page.items.first.number) unless page.number.to_i == 0
+          if page.number.to_i != 0 and page.items.count > 1
+            item_number_info += '-' + i_to_thai(page.items.last.number)
+          end      
+          [page.content, page_number_info, item_number_info, 
+            i_to_thai(page.number), page.id, page.items.first.number]
+        end      
+      end
+
+      first_page = "พระไตรปิฎกเล่มที่ #{i_to_thai(volume)} มีทั้งหมด\n"
+      first_page += "    #{i_to_thai(max_page)} หน้า"
+      first_page += " #{i_to_thai(max_item)} ข้อ\n"    
+
+      all_pages = [[first_page, '', '', '', 0, 0]]
+      all_pages.concat(pages)
+    end
+
+    def find_max_page(language, volume)
+      Rails.cache.fetch("/#{language}/#{volume}/max_page"){Page.max(language,volume)}
+    end
+    
+    def find_max_item(language, volume)
+      Rails.cache.fetch("/#{language}/#{volume}/max_item"){Item.max(language,volume)}
+    end
 
     def find_matched_page(lang1, lang2, volume, page)
       item = Page.where(:language => lang1, 

@@ -1,7 +1,6 @@
 <%= form_for(:read, :html => {:class => "form-inline read-nav-form"}) do |f| %>
   <span class="field">
     <%= f.label :page_number, 'หน้า' %>
-    <%= f.text_field :page_number , {'ng-model' => 'page_number', :class => "input-tiny"}%>
-    <%= f.submit '►' %>
+    <%= f.text_field :page_number , {'ng-model' => 'page_number_input', :class => "input-tiny"}%>
   </span>
 <% end %>

@@ -1,7 +1,6 @@
 <%= form_for(:read, :html => {:class => "form-inline read-nav-form"}) do |f| %>
   <span class="field">
     <%= f.label :item_number, 'ข้อ' %>
-    <%= f.text_field :item_number , {:class => "input-tiny"}%>
-    <%= f.submit '►' %>
+    <%= f.text_field :item_number , {'ng-model' => 'item_number_input', :class => "input-tiny"}%>
   </span>
 <% end %>

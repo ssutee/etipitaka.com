@@ -1,0 +1,33 @@
+<script type="text/javascript">
+  function PageCtrl($scope) {
+    $scope.curs = [<%= @pages[0] %>, <%= @pages[1] %>];
+    <% cache(:action => 'compare', :action_suffix => "items_map_#{@languages[0]}-#{@languages[1]}_#{@volume}") do %>
+    $scope.items_maps = <%= raw @items_maps.to_json %>;
+    <% end %>
+    $scope.max_numbers = [<%= @max_numbers[0] %>, <%= @max_numbers[1] %>];  
+    
+    <% cache(:action => 'compare', :action_suffix => "all_pages_#{@languages[0]}-#{@languages[1]}_#{@volume}") do %>
+    $scope.all_pages = <%= raw @all_pages.to_json %>;
+    <% end %>
+    
+    $scope.set_content = function () {
+      $scope.left_content = $scope.all_pages[0][$scope.curs[0]][0];
+      $scope.right_content = $scope.all_pages[1][$scope.curs[1]][0];
+      
+      $scope.page_number_infos = [$scope.all_pages[0][$scope.curs[0]][1], $scope.all_pages[1][$scope.curs[1]][1]];
+      $scope.item_number_infos = [$scope.all_pages[0][$scope.curs[0]][2], $scope.all_pages[1][$scope.curs[1]][2]];
+    }
+    
+    $scope.set_content();
+    
+    $scope.next = function(index) {
+      $scope.curs[index] = ($scope.curs[index] < $scope.max_numbers[index]) ? $scope.curs[index] + 1 : $scope.curs[index];
+      $scope.set_content();
+    }
+
+    $scope.back = function(index) {
+      $scope.curs[index] = ($scope.curs[index] > 1) ? $scope.curs[index] -1 : $scope.curs[index];        
+      $scope.set_content();
+    }
+  }
+</script>
