@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="ngSanitize">
+<html ng-app="app">
 <head>
   <title> <%= title %></title>
   <script type="text/javascript">
@@ -12,9 +12,15 @@
       ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
+    
   </script>
   <%= javascript_include_tag 'angular.min.js' %>
   <%= javascript_include_tag 'angular-sanitize.min.js' %>
+  <%= javascript_include_tag 'angular-ui-ieshiv.min' %>
+  <%= javascript_include_tag 'angular-ui.min.js' %>
+  <script type="text/javascript">
+    angular.module('app', ['ui', 'ngSanitize'])
+  </script>
   <%= yield :head %>
   <link rel="shortcut icon" type="image/x-icon"  href="/favicon.ico" />  
   <%= csrf_meta_tag %>

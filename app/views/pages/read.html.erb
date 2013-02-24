@@ -1,16 +1,17 @@
 <% content_for :head do %>
   <%= render 'layouts/stylesheets' %>
   <%= javascript_include_tag 'jquery-1.8.2.min.js' %>
+  <%= javascript_include_tag 'jquerypp.min.js' %>  
   <%= javascript_include_tag 'jquery-ui-1.8.12.custom.min.js' %>  
   <%= javascript_include_tag 'bootstrap.min.js' %>    
   <%= stylesheet_link_tag 'Aristo/jquery-ui-1.8.7.custom.css', :media => 'screen' %>
   <%= stylesheet_link_tag 'bootstrap.min.css', :media => 'screen' %>
   <%= stylesheet_link_tag 'bootstrap-responsive.min.css', :media => 'screen' %>
   <link rel="image_src" href="/logo_64.ico" />
-  <%= render :partial => 'read_script' %>
+  <%= render :partial => 'read_script' %>  
 <% end %>
 
-<div ng-controller="PageCtrl" style="height:100%">
+<div id="controller" ng-controller="PageCtrl" style="height:100%">
 
 <div class="toolbar">
   <%= render :partial => 'toolbar' %>

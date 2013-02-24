@@ -10,6 +10,47 @@
     });
   }
   
+  function doBack() {
+    if($('#controller')) {
+      angular.element($('#controller')).scope().$apply(function(scope) {
+        scope.back();
+      });
+    }
+  }
+
+  function doNext() {
+    if($('#controller')) {
+      angular.element($('#controller')).scope().$apply(function(scope) {
+        scope.next();
+      });
+    }
+  }
+
+  $(document).ready(function() {    
+    $("body").keydown(function(e) {
+      if(e.keyCode == 37) { // left  
+        doBack();
+      }
+      else if(e.keyCode == 39) { // right
+        doNext();
+      }
+    });
+    
+    $('p.content').on({
+        'swiperight' : function(ev) {
+            doNext();
+        },
+        'swipeleft' : function(ev) {
+            doBack();
+        },
+        'swipeup' : function(ev) {
+        },
+        'swipedown' : function(ev) {
+        }
+    });    
+  });
+  
+  
   function PageCtrl($scope) {
     $scope.cur = <%= @number %>;
 
