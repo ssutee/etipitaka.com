@@ -18,8 +18,10 @@
   <%= javascript_include_tag 'angular-sanitize.min.js' %>
   <%= javascript_include_tag 'angular-ui-ieshiv.min' %>
   <%= javascript_include_tag 'angular-ui.min.js' %>
+  <%= javascript_include_tag 'angular-resource.min.js' %>  
+  <%= javascript_include_tag 'etipitaka.js' %>
   <script type="text/javascript">
-    angular.module('app', ['ui', 'ngSanitize'])
+    angular.module('app', ['ui', 'ngSanitize', 'etipitaka'])
   </script>
   <%= yield :head %>
   <link rel="shortcut icon" type="image/x-icon"  href="/favicon.ico" />  

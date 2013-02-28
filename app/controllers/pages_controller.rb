@@ -171,7 +171,7 @@ class PagesController < ApplicationController
           if page.number.to_i != 0 and page.items.count > 1
             item_number_info += '-' + i_to_thai(page.items.last.number)
           end      
-          [page.content, page_number_info, item_number_info, 
+          ['', page_number_info, item_number_info, 
             i_to_thai(page.number), page.id, page.items.first.number]
         end      
       end

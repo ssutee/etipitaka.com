@@ -1,5 +1,5 @@
 <script type="text/javascript">
-  function PageCtrl($scope) {
+  function PageCtrl($scope, Page) {
     $scope.curs = [<%= @pages[0] %>, <%= @pages[1] %>];
     <% cache(:action => 'compare', :action_suffix => "items_map_#{@languages[0]}-#{@languages[1]}_#{@volume}") do %>
     $scope.items_maps = <%= raw @items_maps.to_json %>;
@@ -11,11 +11,26 @@
     <% end %>
     
     $scope.set_content = function () {
-      $scope.left_content = $scope.all_pages[0][$scope.curs[0]][0];
-      $scope.right_content = $scope.all_pages[1][$scope.curs[1]][0];
-      
-      $scope.page_number_infos = [$scope.all_pages[0][$scope.curs[0]][1], $scope.all_pages[1][$scope.curs[1]][1]];
-      $scope.item_number_infos = [$scope.all_pages[0][$scope.curs[0]][2], $scope.all_pages[1][$scope.curs[1]][2]];
+      Page.get({'lang':"thai", 'volume':<%= @volume %>, 'page':$scope.curs[0]},
+        function(page) {
+          $scope.left_content = page['rows'][0] ? 
+            page['rows'][0]['text'] : $scope.all_pages[0][$scope.curs[0]][0];
+        }
+      );
+
+      Page.get({'lang':"pali", 'volume':<%= @volume %>, 'page':$scope.curs[1]},
+        function(page) {
+          $scope.right_content = page['rows'][0] ? 
+            page['rows'][0]['text'] : $scope.all_pages[1][$scope.curs[1]][0];
+        }
+      );
+
+      $scope.page_number_infos = [
+        $scope.all_pages[0][$scope.curs[0]][1], 
+        $scope.all_pages[1][$scope.curs[1]][1]];
+      $scope.item_number_infos = [
+        $scope.all_pages[0][$scope.curs[0]][2], 
+        $scope.all_pages[1][$scope.curs[1]][2]];
     }
     
     $scope.set_content();

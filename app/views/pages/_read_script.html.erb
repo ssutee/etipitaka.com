@@ -51,7 +51,8 @@
   });
   
   
-  function PageCtrl($scope) {
+  function PageCtrl($scope, Page) {
+    
     $scope.cur = <%= @number %>;
 
     <% cache(:action => 'read', :action_suffix => "items_map_#{@language}_#{@volume}") do %>
@@ -68,25 +69,32 @@
     <% end %>
           
     $scope.set_content = function () {
-      var content = $scope.all_pages[$scope.cur][0];
-      if (!$scope.keywords) {
-        $scope.content = content;
-      } else {
-        var pattern = new RegExp('(' + $scope.keywords.join('|') + ')','g'),
-            replaceWith = '<span ' + ( 'class="' + 'highlight_excerpt' + '"' ) + '">$1</span>',
-            highlighted = content.replace(pattern, replaceWith);           
-        $scope.content = highlighted;
-      }
-      $scope.page_number_info = $scope.all_pages[$scope.cur][1];
-      $scope.item_number_info = $scope.all_pages[$scope.cur][2];
-      $scope.page_number_thai = $scope.all_pages[$scope.cur][3];
-      $scope.page_id = $scope.all_pages[$scope.cur][4];
-      $scope.item_number = $scope.all_pages[$scope.cur][5];
-      
-      $scope.show_if_not_zero = $scope.cur > 0 ? 'block' : 'none';
-      $scope.show_inline_if_not_zero = $scope.cur > 0 ? 'inline-block' : 'none';
-    }
+      Page.get({'lang':"<%= @language %>", 'volume':<%= @volume %>, 'page':$scope.cur},
+        function(page) {          
+          var content = page['rows'][0] ? page['rows'][0]['text'] : $scope.all_pages[$scope.cur][0];
+          if (!$scope.keywords) {
+            $scope.content = content;
+          } else {
+            var pattern = new RegExp('(' + $scope.keywords.join('|') + ')','g'),
+                replaceWith = '<span ' + 
+                   'class="' + 'highlight_excerpt' + '"' + '">$1</span>',
+                highlighted = content.replace(pattern, replaceWith);           
+            $scope.content = highlighted;
+          }
+          
+          $scope.page_number_info = $scope.all_pages[$scope.cur][1];
+          $scope.item_number_info = $scope.all_pages[$scope.cur][2];
+          $scope.page_number_thai = $scope.all_pages[$scope.cur][3];
+          $scope.page_id = $scope.all_pages[$scope.cur][4];
+          $scope.item_number = $scope.all_pages[$scope.cur][5];
 
+          $scope.show_if_not_zero = $scope.cur > 0 ? 'block' : 'none';
+          $scope.show_inline_if_not_zero = $scope.cur > 0 ? 'inline-block' : 'none';
+          
+        }
+      );
+    }
+    
     $scope.set_content();
 
     $scope.next = function() {
