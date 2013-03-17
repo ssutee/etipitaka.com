@@ -11,14 +11,14 @@
     <% end %>
     
     $scope.set_content = function () {
-      Page.get({'lang':"@languages[0]", 'volume':<%= @volume %>, 'page':$scope.curs[0]},
+      Page.get({'lang':"<%= @languages[0] %>", 'volume':<%= @volume %>, 'page':$scope.curs[0]},
         function(page) {
           $scope.left_content = page['rows'][0] ? 
             page['rows'][0]['text'] : $scope.all_pages[0][$scope.curs[0]][0];
         }
       );
 
-      Page.get({'lang':"@languages[1]", 'volume':<%= @volume %>, 'page':$scope.curs[1]},
+      Page.get({'lang':"<%= @languages[1] %>", 'volume':<%= @volume %>, 'page':$scope.curs[1]},
         function(page) {
           $scope.right_content = page['rows'][0] ? 
             page['rows'][0]['text'] : $scope.all_pages[1][$scope.curs[1]][0];
